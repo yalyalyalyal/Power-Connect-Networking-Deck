@@ -107,7 +107,7 @@ function Discover() {
         </div>
 
         {top && (
-          <div className="mt-6 flex items-center justify-center gap-5">
+          <div className="mt-4 flex shrink-0 items-center justify-center gap-5">
             <ActionButton
               label="Pass"
               onClick={() => handleSwipe("left", top.id)}
