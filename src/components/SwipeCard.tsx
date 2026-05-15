@@ -31,17 +31,18 @@ export function SwipeCard({
   return (
     <motion.div
       className="absolute inset-0 select-none"
-      style={{ x, rotate, zIndex: 50 - stackIndex }}
+      style={{ x, rotate, zIndex: 50 - stackIndex, touchAction: isTop ? "pan-y" : "none" }}
       initial={{ scale, y, opacity: stackIndex > 2 ? 0 : 1 }}
       animate={{ scale, y, opacity: stackIndex > 2 ? 0 : 1 }}
       drag={isTop ? "x" : false}
+      dragDirectionLock
       dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-      dragElastic={0.7}
+      dragElastic={0.6}
       onDragEnd={handleDragEnd}
       whileTap={{ cursor: "grabbing" }}
     >
       <div className="relative h-full w-full overflow-hidden rounded-3xl border border-border/60 bg-card card-shadow">
-        <div className="h-full overflow-y-auto no-scrollbar">
+        <div className="h-full overflow-y-auto no-scrollbar" style={{ touchAction: "pan-y" }}>
           <ProfileDetail profile={profile} />
         </div>
 
