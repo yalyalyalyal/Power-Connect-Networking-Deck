@@ -19,7 +19,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="mx-auto flex h-[100dvh] max-w-md flex-col">
-      <div className="flex flex-1 flex-col overflow-y-auto pb-20">{children}</div>
+      <div className="flex flex-1 flex-col overflow-hidden pb-20">{children}</div>
       <BottomNav />
     </div>
   );
