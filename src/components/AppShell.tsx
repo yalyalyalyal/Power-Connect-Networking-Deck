@@ -18,8 +18,8 @@ export function AppShell({ children }: { children: ReactNode }) {
   if (!user) return <LoginScreen />;
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-md flex-col pb-24">
-      {children}
+    <div className="mx-auto flex h-[100dvh] max-w-md flex-col">
+      <div className="flex flex-1 flex-col overflow-hidden pb-20">{children}</div>
       <BottomNav />
     </div>
   );

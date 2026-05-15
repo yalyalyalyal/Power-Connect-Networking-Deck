@@ -83,8 +83,8 @@ function Discover() {
         activeFilterCount={activeFilterCount}
       />
 
-      <main className="flex flex-1 flex-col px-4 pt-4">
-        <div className="relative mx-auto aspect-[3/4.4] w-full max-w-sm">
+      <main className="flex flex-1 flex-col px-4 pt-3 pb-2 min-h-0">
+        <div className="relative mx-auto w-full max-w-sm flex-1 min-h-[360px]">
           {isLoading ? (
             <div className="absolute inset-0 flex items-center justify-center rounded-3xl border border-border/60 bg-card">
               <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -107,7 +107,7 @@ function Discover() {
         </div>
 
         {top && (
-          <div className="mt-6 flex items-center justify-center gap-5">
+          <div className="mt-4 flex shrink-0 items-center justify-center gap-5">
             <ActionButton
               label="Pass"
               onClick={() => handleSwipe("left", top.id)}

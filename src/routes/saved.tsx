@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Loader2, BookmarkX } from "lucide-react";
+import { Loader2, BookmarkX, Linkedin, Trash2, ChevronRight } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { TopBar } from "@/components/TopBar";
 import { ProfileDetail } from "@/components/ProfileDetail";
@@ -12,6 +12,8 @@ import {
   useToggleBookmark,
 } from "@/hooks/useNetworking";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import type { Profile } from "@/lib/profiles";
 
 export const Route = createFileRoute("/saved")({
   component: () => (
@@ -25,6 +27,7 @@ function Saved() {
   const [search, setSearch] = useState("");
   const [filters, setFilters] = useState<Filters>(emptyFilters);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [expanded, setExpanded] = useState<Profile | null>(null);
 
   const { data: profiles = [], isLoading } = useProfiles();
   const { data: bookmarks = [] } = useBookmarks();
@@ -39,6 +42,11 @@ function Saved() {
 
   const activeFilterCount = filters.companyTypes.length + filters.departments.length;
 
+  const handleRemove = (profileId: string) => {
+    toggleBookmark.mutate({ profileId, save: false });
+    setExpanded(null);
+  };
+
   return (
     <>
       <TopBar
@@ -47,7 +55,7 @@ function Saved() {
         onOpenFilters={() => setFiltersOpen(true)}
         activeFilterCount={activeFilterCount}
       />
-      <main className="flex-1 px-4 pt-4">
+      <main className="flex-1 overflow-y-auto px-4 pt-4">
         <div className="mb-4 flex items-baseline justify-between">
           <h1 className="text-xl font-extrabold tracking-tight">Saved profiles</h1>
           <span className="text-xs font-semibold text-muted-foreground">
@@ -68,28 +76,38 @@ function Saved() {
             </p>
           </div>
         ) : (
-          <div className="space-y-4">
+          <ul className="space-y-2">
             {list.map((profile) => (
-              <div
-                key={profile.id}
-                className="overflow-hidden rounded-3xl border border-border/60 bg-card card-shadow"
-              >
-                <ProfileDetail profile={profile} saved compact />
-                <div className="border-t border-border/60 p-3">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full"
-                    onClick={() =>
-                      toggleBookmark.mutate({ profileId: profile.id, save: false })
-                    }
-                  >
-                    Remove from saved
-                  </Button>
-                </div>
-              </div>
+              <li key={profile.id}>
+                <button
+                  type="button"
+                  onClick={() => setExpanded(profile)}
+                  className="group flex w-full items-center gap-3 rounded-2xl border border-border/60 bg-card/80 p-3 text-left transition hover:border-primary/60 hover:bg-card"
+                >
+                  <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full bg-secondary">
+                    {profile.avatar_url ? (
+                      <img
+                        src={profile.avatar_url}
+                        alt={profile.name}
+                        className="h-full w-full object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center font-bold text-muted-foreground">
+                        {profile.name?.[0] ?? "?"}
+                      </div>
+                    )}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate font-bold text-foreground">{profile.name}</p>
+                    <p className="truncate text-xs text-muted-foreground">
+                      {[profile.role, profile.company].filter(Boolean).join(" · ")}
+                    </p>
+                  </div>
+                  <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground transition group-hover:text-primary" />
+                </button>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
       </main>
 
@@ -99,6 +117,51 @@ function Saved() {
         filters={filters}
         onChange={setFilters}
       />
+
+      <Dialog open={!!expanded} onOpenChange={(o) => !o && setExpanded(null)}>
+        <DialogContent
+          className="max-h-[90dvh] w-[95vw] max-w-md gap-0 overflow-hidden rounded-3xl border-border/60 bg-card p-0"
+        >
+          {expanded && (
+            <div className="flex max-h-[90dvh] flex-col">
+              <div className="flex-1 overflow-y-auto">
+                <ProfileDetail profile={expanded} saved />
+              </div>
+              <div className="grid shrink-0 grid-cols-[auto_1fr] gap-2 border-t border-border/60 bg-card/95 p-3 backdrop-blur">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={() => handleRemove(expanded.id)}
+                  className="h-12 border-destructive/50 text-destructive hover:bg-destructive/10"
+                  aria-label="Remove from saved"
+                >
+                  <Trash2 className="h-5 w-5" />
+                </Button>
+                {expanded.linkedin_url ? (
+                  <Button
+                    asChild
+                    size="lg"
+                    className="h-12 gap-2 text-base font-bold text-white"
+                    style={{ background: "var(--linkedin)" }}
+                  >
+                    <a
+                      href={expanded.linkedin_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Connect with <Linkedin className="h-5 w-5" fill="white" />
+                    </a>
+                  </Button>
+                ) : (
+                  <Button size="lg" disabled className="h-12">
+                    No LinkedIn
+                  </Button>
+                )}
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
