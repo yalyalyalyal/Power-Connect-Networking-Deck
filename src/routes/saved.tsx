@@ -121,7 +121,6 @@ function Saved() {
       <Dialog open={!!expanded} onOpenChange={(o) => !o && setExpanded(null)}>
         <DialogContent
           className="max-h-[90dvh] w-[95vw] max-w-md gap-0 overflow-hidden rounded-3xl border-border/60 bg-card p-0"
-          showCloseButton
         >
           {expanded && (
             <div className="flex max-h-[90dvh] flex-col">
