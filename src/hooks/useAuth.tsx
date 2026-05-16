@@ -2,11 +2,24 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 import type { Session, User } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 
+const TEST_EMAIL = "test@test.test";
+const TEST_FLAG_KEY = "etw-test-mode";
+
+const TEST_USER = {
+  id: "00000000-0000-0000-0000-000000000001",
+  email: TEST_EMAIL,
+  app_metadata: {},
+  user_metadata: {},
+  aud: "authenticated",
+  created_at: new Date().toISOString(),
+} as unknown as User;
+
 type AuthCtx = {
   user: User | null;
   session: Session | null;
   loading: boolean;
-  signInWithMagicLink: (email: string) => Promise<{ error: string | null }>;
+  isTestUser: boolean;
+  signInWithMagicLink: (email: string) => Promise<{ error: string | null; test?: boolean }>;
   signOut: () => Promise<void>;
 };
 
@@ -15,6 +28,10 @@ const Ctx = createContext<AuthCtx | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+  const [testUser, setTestUser] = useState<User | null>(() => {
+    if (typeof window === "undefined") return null;
+    return localStorage.getItem(TEST_FLAG_KEY) === "1" ? TEST_USER : null;
+  });
 
   useEffect(() => {
     const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => {
@@ -29,6 +46,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const signInWithMagicLink = async (email: string) => {
+    if (email.trim().toLowerCase() === TEST_EMAIL) {
+      localStorage.setItem(TEST_FLAG_KEY, "1");
+      setTestUser(TEST_USER);
+      return { error: null, test: true };
+    }
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
@@ -40,15 +62,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signOut = async () => {
+    if (testUser) {
+      localStorage.removeItem(TEST_FLAG_KEY);
+      setTestUser(null);
+    }
     await supabase.auth.signOut();
   };
+
+  const user = session?.user ?? testUser;
 
   return (
     <Ctx.Provider
       value={{
-        user: session?.user ?? null,
+        user,
         session,
         loading,
+        isTestUser: !!testUser && !session,
         signInWithMagicLink,
         signOut,
       }}
