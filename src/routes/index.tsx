@@ -171,7 +171,7 @@ function ActionButton({
       onClick={onClick}
       disabled={disabled}
       aria-label={label}
-      className={`rounded-full transition-transform disabled:opacity-40 disabled:hover:scale-100 ${styles[variant]}`}
+      className={`rounded-full transition-transform disabled:hover:scale-100 ${styles[variant]} ${variant === 'reject' ? 'bg-[#c7c7c7]/0 opacity-100' : 'disabled:opacity-40'}`}
     >
       {children}
     </Button>
