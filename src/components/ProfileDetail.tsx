@@ -129,11 +129,6 @@ export function ProfileDetail({
             <Bookmark className="h-4 w-4 fill-primary-foreground text-primary-foreground" />
           </div>
         )}
-        {profile.all_star && (
-          <div className="absolute top-3 left-3">
-            <img src={allStarBadge} alt="All Star" className="h-6 w-auto drop-shadow-lg mx-0 my-[197px]" />
-          </div>
-        )}
         <div className="absolute bottom-0 left-0 right-0 p-5">
           <div className="flex items-start justify-between gap-3">
             <h2 className="text-2xl font-extrabold leading-tight tracking-tight text-foreground text-glow">
