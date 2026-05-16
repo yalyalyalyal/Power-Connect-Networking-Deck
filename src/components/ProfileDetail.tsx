@@ -131,7 +131,7 @@ export function ProfileDetail({
         )}
         {profile.all_star && (
           <div className="absolute top-3 left-3">
-            <img src={allStarBadge} alt="All Star" className="h-6 w-auto drop-shadow-lg mx-0 my-[197px]" />
+            <img src={allStarBadge} alt="All Star" className="h-6 w-auto drop-shadow-lg" />
           </div>
         )}
         <div className="absolute bottom-0 left-0 right-0 p-5">
