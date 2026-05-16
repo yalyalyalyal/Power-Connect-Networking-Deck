@@ -3,7 +3,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { Logo } from "./Logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Mail, Sparkles } from "lucide-react";
+import { Mail, Search } from "lucide-react";
 
 export function LoginScreen() {
   const { signInWithMagicLink } = useAuth();
@@ -41,7 +41,7 @@ export function LoginScreen() {
         {sent ? (
           <div className="rounded-2xl border border-primary/40 bg-card p-6 text-center card-shadow">
             <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full gradient-primary glow">
-              <Sparkles className="h-6 w-6 text-primary-foreground" />
+              <Search className="h-6 w-6 text-primary-foreground text-slate-50" />
             </div>
             <h2 className="text-lg font-bold">Check your inbox</h2>
             <p className="mt-2 text-sm text-muted-foreground">
