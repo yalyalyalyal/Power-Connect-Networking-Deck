@@ -156,6 +156,11 @@ export function ProfileDetail({
         <div>
           <p className="text-lg font-bold text-foreground">{profile.role ?? "—"}</p>
           <p className="text-base text-primary font-semibold">{profile.company ?? ""}</p>
+          {profile.all_star && (
+            <div className="mt-2">
+              <img src={allStarBadge} alt="All Star" className="h-5 w-auto" />
+            </div>
+          )}
         </div>
 
         {profile.looking_for && (
