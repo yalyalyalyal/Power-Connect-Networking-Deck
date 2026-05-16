@@ -57,6 +57,7 @@ function Discover() {
     } else {
       reject.mutate(profileId);
       setHistory((h) => [...h, { profileId, type: "reject" }]);
+      toast("Passed", { className: "border-border/60" });
     }
   };
 
@@ -69,6 +70,7 @@ function Discover() {
       undoReject.mutate(last.profileId);
     }
     setHistory((h) => h.slice(0, -1));
+    toast("Last action undone", { className: "border-primary/40" });
   };
 
   const activeFilterCount = filters.companyTypes.length + filters.departments.length;
@@ -107,7 +109,7 @@ function Discover() {
         </div>
 
         {top && (
-          <div className="mt-4 flex shrink-0 items-center justify-center gap-5">
+          <div className="relative z-10 mt-4 flex shrink-0 items-center justify-center gap-5">
             <ActionButton
               label="Pass"
               onClick={() => handleSwipe("left", top.id)}

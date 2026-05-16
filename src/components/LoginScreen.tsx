@@ -16,10 +16,13 @@ export function LoginScreen() {
     e.preventDefault();
     setError(null);
     setLoading(true);
-    const { error } = await signInWithMagicLink(email.trim().toLowerCase());
+    const { error, test } = await signInWithMagicLink(email.trim().toLowerCase());
     setLoading(false);
     if (error) setError(error);
-    else setSent(true);
+    else if (test) {
+      // Test bypass — AppShell will swap to the deck on next render.
+      return;
+    } else setSent(true);
   };
 
   return (
