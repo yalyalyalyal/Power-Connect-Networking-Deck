@@ -130,7 +130,7 @@ function Discover() {
               onClick={() => handleSwipe("right", top.id)}
               variant="save"
             >
-              <Bookmark className="h-6 w-6" fill="currentColor" />
+              <Bookmark className="h-6 w-6 text-slate-50" fill="currentColor" />
             </ActionButton>
           </div>
         )}
@@ -182,7 +182,7 @@ function EmptyDeck({ hasFilters }: { hasFilters: boolean }) {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center rounded-3xl border border-dashed border-border/60 bg-card/40 p-8 text-center">
       <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full gradient-primary glow">
-        <Bookmark className="h-6 w-6 text-primary-foreground" />
+        <Bookmark className="h-6 w-6 text-primary-foreground text-slate-50" />
       </div>
       <h3 className="text-lg font-bold">You're all caught up</h3>
       <p className="mt-2 text-sm text-muted-foreground">
