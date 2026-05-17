@@ -74,7 +74,7 @@ function Settings() {
         <section className="rounded-2xl border border-border/60 bg-card p-5 card-shadow">
           <div className="flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-full gradient-primary glow">
-              <Mail className="h-5 w-5 text-primary-foreground" />
+              <Mail className="h-5 w-5 text-primary-foreground text-slate-50" />
             </div>
             <div className="min-w-0">
               <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
