@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Loader2, BookmarkX, Linkedin, Trash2, ChevronRight } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { TopBar } from "@/components/TopBar";
@@ -46,6 +46,21 @@ function Saved() {
     toggleBookmark.mutate({ profileId, save: false });
     setExpanded(null);
   };
+
+  // Support device back button (Android BackHandler / browser back / iOS swipe back)
+  // to close the expanded profile dialog. ESC key is handled natively by Dialog.
+  useEffect(() => {
+    if (!expanded) return;
+    window.history.pushState({ etwExpanded: true }, "");
+    const onPop = () => setExpanded(null);
+    window.addEventListener("popstate", onPop);
+    return () => {
+      window.removeEventListener("popstate", onPop);
+      if (window.history.state?.etwExpanded) {
+        window.history.back();
+      }
+    };
+  }, [expanded]);
 
   return (
     <>
