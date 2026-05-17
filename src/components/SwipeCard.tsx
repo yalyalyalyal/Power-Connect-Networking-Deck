@@ -1,8 +1,10 @@
-import { motion, useMotionValue, useTransform, type PanInfo } from "motion/react";
+import { animate, motion, useMotionValue, useTransform } from "motion/react";
+import { useRef } from "react";
 import type { Profile } from "@/lib/profiles";
 import { ProfileDetail } from "./ProfileDetail";
 
 const SWIPE_THRESHOLD = 110;
+const DIRECTION_LOCK_PX = 6;
 
 export function SwipeCard({
   profile,
@@ -20,9 +22,61 @@ export function SwipeCard({
   const likeOpacity = useTransform(x, [40, 140], [0, 1]);
   const nopeOpacity = useTransform(x, [-140, -40], [1, 0]);
 
-  const handleDragEnd = (_: unknown, info: PanInfo) => {
-    if (info.offset.x > SWIPE_THRESHOLD) onSwipe("right");
-    else if (info.offset.x < -SWIPE_THRESHOLD) onSwipe("left");
+  const startRef = useRef<{ x: number; y: number } | null>(null);
+  const lockedRef = useRef<"horizontal" | "vertical" | null>(null);
+  const activePointerRef = useRef<number | null>(null);
+
+  const reset = () => {
+    startRef.current = null;
+    lockedRef.current = null;
+    activePointerRef.current = null;
+  };
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    if (!isTop) return;
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    startRef.current = { x: e.clientX, y: e.clientY };
+    lockedRef.current = null;
+    activePointerRef.current = e.pointerId;
+  };
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (!isTop || !startRef.current) return;
+    if (activePointerRef.current !== e.pointerId) return;
+
+    const dx = e.clientX - startRef.current.x;
+    const dy = e.clientY - startRef.current.y;
+
+    if (!lockedRef.current) {
+      if (Math.abs(dx) < DIRECTION_LOCK_PX && Math.abs(dy) < DIRECTION_LOCK_PX) return;
+      lockedRef.current = Math.abs(dx) > Math.abs(dy) ? "horizontal" : "vertical";
+      if (lockedRef.current === "horizontal") {
+        // Capture pointer so we keep getting events even if the browser tries to scroll
+        (e.currentTarget as Element).setPointerCapture?.(e.pointerId);
+      }
+    }
+
+    if (lockedRef.current === "horizontal") {
+      e.preventDefault();
+      x.set(dx);
+    }
+  };
+
+  const finish = (e: React.PointerEvent) => {
+    if (!isTop) return;
+    if (activePointerRef.current !== e.pointerId) return;
+    const wasHorizontal = lockedRef.current === "horizontal";
+    reset();
+    if (!wasHorizontal) return;
+
+    const current = x.get();
+    if (current > SWIPE_THRESHOLD) {
+      onSwipe("right");
+    } else if (current < -SWIPE_THRESHOLD) {
+      onSwipe("left");
+    } else {
+      animate(x, 0, { type: "spring", stiffness: 400, damping: 30 });
+    }
   };
 
   const scale = 1 - stackIndex * 0.04;
@@ -34,17 +88,13 @@ export function SwipeCard({
       style={{ x, rotate, zIndex: 50 - stackIndex, touchAction: isTop ? "pan-y" : "none" }}
       initial={{ scale, y, opacity: stackIndex > 2 ? 0 : 1 }}
       animate={{ scale, y, opacity: stackIndex > 2 ? 0 : 1 }}
-      drag={isTop ? "x" : false}
-      dragDirectionLock
-      dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-      dragElastic={0.6}
-      onDragEnd={handleDragEnd}
-      whileTap={{ cursor: "grabbing" }}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={finish}
+      onPointerCancel={finish}
     >
       <div className="relative h-full w-full overflow-hidden rounded-3xl border border-border/60 bg-card card-shadow">
-        <div className="h-full" style={{ touchAction: isTop ? "pan-y" : "none" }}>
-          <ProfileDetail profile={profile} variant="card" />
-        </div>
+        <ProfileDetail profile={profile} variant="card" />
 
         {isTop && (
           <>
