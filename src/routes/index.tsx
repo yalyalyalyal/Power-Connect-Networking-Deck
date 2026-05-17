@@ -115,7 +115,7 @@ function Discover() {
               onClick={() => handleSwipe("left", top.id)}
               variant="reject"
             >
-              <X className="h-7 w-7" strokeWidth={3} />
+              <X className="w-[24px] h-[24px]" strokeWidth={3} />
             </ActionButton>
             <ActionButton
               label="Undo"
