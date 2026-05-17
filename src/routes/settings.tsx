@@ -140,7 +140,7 @@ function Settings() {
 function Stat({ label, value }: { label: string; value: number }) {
   return (
     <div className="rounded-xl border border-border/60 bg-secondary/40 py-3">
-      <p className="text-2xl font-extrabold text-glow text-primary">{value}</p>
+      <p className="text-2xl font-extrabold text-glow text-primary text-slate-50">{value}</p>
       <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
         {label}
       </p>
