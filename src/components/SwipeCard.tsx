@@ -42,7 +42,7 @@ export function SwipeCard({
       whileTap={{ cursor: "grabbing" }}
     >
       <div className="relative h-full w-full overflow-hidden rounded-3xl border border-border/60 bg-card card-shadow">
-        <div className="h-full overflow-y-auto no-scrollbar" style={{ touchAction: "pan-y" }}>
+        <div className="h-full" style={{ touchAction: isTop ? "pan-y" : "none" }}>
           <ProfileDetail profile={profile} variant="card" />
         </div>
 

@@ -125,7 +125,7 @@ export function ProfileDetail({
         )}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
         {saved && (
-          <div className="absolute top-3 right-3 rounded-full bg-primary/90 p-2 glow">
+          <div className="absolute top-3 left-3 z-10 rounded-full bg-primary/90 p-2 glow">
             <Bookmark className="h-4 w-4 fill-primary-foreground text-primary-foreground" />
           </div>
         )}

@@ -70,7 +70,7 @@ function Settings() {
         </div>
       </header>
 
-      <main className="flex-1 space-y-6 px-4 pt-6">
+      <main className="flex-1 space-y-6 overflow-y-auto px-4 pt-6 pb-6">
         <section className="rounded-2xl border border-border/60 bg-card p-5 card-shadow">
           <div className="flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-full gradient-primary glow">
