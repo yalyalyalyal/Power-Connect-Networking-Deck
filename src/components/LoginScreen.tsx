@@ -76,7 +76,7 @@ export function LoginScreen() {
             <Button
               type="submit"
               disabled={loading || !email}
-              className="h-12 w-full gradient-primary border-0 text-base font-bold glow"
+              className="h-12 w-full gradient-primary border-0 text-base font-bold glow text-slate-50"
             >
               {loading ? "Sending magic link..." : "Send magic link"}
             </Button>
