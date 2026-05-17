@@ -120,7 +120,7 @@ function Saved() {
 
       <Dialog open={!!expanded} onOpenChange={(o) => !o && setExpanded(null)}>
         <DialogContent
-          className="max-h-[90dvh] w-[95vw] max-w-md gap-0 overflow-hidden rounded-3xl border-border/60 bg-card p-0 [&>button.absolute]:left-4 [&>button.absolute]:right-auto [&>button.absolute]:top-4 [&>button.absolute]:z-30 [&>button.absolute]:rounded-full [&>button.absolute]:bg-background/80 [&>button.absolute]:p-1.5 [&>button.absolute]:backdrop-blur"
+          className="max-h-[90dvh] w-[95vw] max-w-md gap-0 overflow-hidden rounded-3xl border-border/60 bg-card p-0 [&>button.absolute]:top-4 [&>button.absolute]:right-4 [&>button.absolute]:z-30 [&>button.absolute]:rounded-full [&>button.absolute]:bg-background/80 [&>button.absolute]:p-1.5 [&>button.absolute]:backdrop-blur"
         >
           {expanded && (
             <div className="flex max-h-[90dvh] flex-col">
