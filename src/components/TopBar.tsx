@@ -24,7 +24,7 @@ export function TopBar({
           </span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="relative flex-1">
+          <div className="relative flex-1" data-tour="search">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               value={search}
@@ -37,6 +37,7 @@ export function TopBar({
             variant="outline"
             size="icon"
             onClick={onOpenFilters}
+            data-tour="filters"
             className="relative h-11 w-11 rounded-full border-border/60 bg-secondary/40"
             aria-label="Filters"
           >
