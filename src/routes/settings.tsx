@@ -119,8 +119,6 @@ function Settings() {
             onAction={exportCsv}
             disabled={savedProfiles.length === 0}
           />
-        </section>
-
           <SettingRow
             icon={<Compass className="h-5 w-5" />}
             title="Replay onboarding tour"
