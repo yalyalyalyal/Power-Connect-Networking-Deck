@@ -36,6 +36,7 @@ function Discover() {
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [history, setHistory] = useState<Action[]>([]);
 
+  const { user } = useAuth();
   const { data: profiles = [], isLoading } = useProfiles();
   const { data: bookmarks = [] } = useBookmarks();
   const { data: rejections = [] } = useRejections();
