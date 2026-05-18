@@ -23,10 +23,16 @@ export const Route = createFileRoute("/settings")({
 
 function Settings() {
   const { user, signOut } = useAuth();
+  const navigate = useNavigate();
   const { data: bookmarks = [] } = useBookmarks();
   const { data: rejections = [] } = useRejections();
   const { data: profiles = [] } = useProfiles();
   const resetRejections = useResetRejections();
+
+  const replayTour = () => {
+    if (user?.id) localStorage.removeItem(`etw-onboarded:${user.id}`);
+    navigate({ to: "/" });
+  };
 
   const savedProfiles = useMemo(() => {
     const set = new Set(bookmarks.map((b) => b.profile_id));
