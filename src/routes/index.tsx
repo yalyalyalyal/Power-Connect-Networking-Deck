@@ -118,7 +118,7 @@ function Discover() {
         </div>
 
         {top && (
-          <div className="relative z-10 mt-4 flex shrink-0 items-center justify-center gap-5">
+          <div className="relative z-10 mt-4 flex shrink-0 items-center justify-center gap-5" data-tour="actions">
             <ActionButton
               label="Pass"
               onClick={() => handleSwipe("left", top.id)}
