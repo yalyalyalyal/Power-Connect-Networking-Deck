@@ -19,6 +19,7 @@ export function BottomNav() {
             <li key={to} className="flex-1">
               <Link
                 to={to}
+                data-tour={to === "/saved" ? "nav-saved" : to === "/settings" ? "nav-settings" : "nav-discover"}
                 className={cn(
                   "flex flex-col items-center gap-1 py-2 rounded-xl transition-colors",
                   active ? "text-primary text-glow" : "text-muted-foreground hover:text-foreground",
