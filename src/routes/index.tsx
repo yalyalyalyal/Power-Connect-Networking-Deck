@@ -17,6 +17,8 @@ import {
 } from "@/hooks/useNetworking";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { useAuth } from "@/hooks/useAuth";
+import { useOnboardingTour } from "@/hooks/useOnboardingTour";
 
 export const Route = createFileRoute("/")({
   component: () => (
