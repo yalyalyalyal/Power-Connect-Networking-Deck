@@ -1,6 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useMemo } from "react";
-import { Download, RotateCcw, LogOut, Mail } from "lucide-react";
+import { Download, RotateCcw, LogOut, Mail, Compass } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
@@ -23,10 +23,16 @@ export const Route = createFileRoute("/settings")({
 
 function Settings() {
   const { user, signOut } = useAuth();
+  const navigate = useNavigate();
   const { data: bookmarks = [] } = useBookmarks();
   const { data: rejections = [] } = useRejections();
   const { data: profiles = [] } = useProfiles();
   const resetRejections = useResetRejections();
+
+  const replayTour = () => {
+    if (user?.id) localStorage.removeItem(`etw-onboarded:${user.id}`);
+    navigate({ to: "/" });
+  };
 
   const savedProfiles = useMemo(() => {
     const set = new Set(bookmarks.map((b) => b.profile_id));
@@ -112,6 +118,13 @@ function Settings() {
             actionLabel="Export"
             onAction={exportCsv}
             disabled={savedProfiles.length === 0}
+          />
+          <SettingRow
+            icon={<Compass className="h-5 w-5" />}
+            title="Replay onboarding tour"
+            description="Show the guided walkthrough again."
+            actionLabel="Replay"
+            onAction={replayTour}
           />
         </section>
 
