@@ -95,7 +95,7 @@ function Discover() {
       />
 
       <main className="flex flex-1 flex-col px-4 pt-3 pb-2 min-h-0">
-        <div className="relative mx-auto w-full max-w-sm flex-1 min-h-0">
+        <div className="relative mx-auto w-full max-w-sm flex-1 min-h-0" data-tour="deck">
           {isLoading ? (
             <div className="absolute inset-0 flex items-center justify-center rounded-3xl border border-border/60 bg-card">
               <Loader2 className="h-8 w-8 animate-spin text-primary" />
