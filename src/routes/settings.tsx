@@ -121,6 +121,15 @@ function Settings() {
           />
         </section>
 
+          <SettingRow
+            icon={<Compass className="h-5 w-5" />}
+            title="Replay onboarding tour"
+            description="Show the guided walkthrough again."
+            actionLabel="Replay"
+            onAction={replayTour}
+          />
+        </section>
+
         <section className="space-y-3">
           <h2 className="px-1 text-xs font-bold uppercase tracking-widest text-muted-foreground">
             Account
