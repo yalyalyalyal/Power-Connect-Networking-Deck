@@ -63,15 +63,6 @@ export function ProfileDetail({
         )}
 
         <div className="mt-4 flex-1 space-y-3 overflow-y-auto no-scrollbar">
-          {profile.looking_for && (
-            <div className="rounded-xl border border-border/60 bg-secondary/50 p-3">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                Looking for
-              </p>
-              <p className="mt-1 text-sm leading-snug text-foreground">{profile.looking_for}</p>
-            </div>
-          )}
-
           <div className="flex flex-wrap gap-2">
             {profile.category && (
               <Badge className="gradient-primary border-0 text-primary-foreground">
@@ -101,6 +92,15 @@ export function ProfileDetail({
                   <span className="font-bold text-foreground/80">Dept:</span> {profile.department}
                 </span>
               )}
+            </div>
+          )}
+
+          {profile.looking_for && (
+            <div className="rounded-xl border border-border/60 bg-secondary/50 p-3">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                Looking for
+              </p>
+              <p className="mt-1 text-sm leading-snug text-foreground">{profile.looking_for}</p>
             </div>
           )}
         </div>
