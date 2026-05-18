@@ -79,6 +79,12 @@ function Discover() {
   const activeFilterCount = filters.companyTypes.length + filters.departments.length;
   const top = deck[0];
 
+  useOnboardingTour({
+    userId: user?.id,
+    ready: !isLoading,
+    hasDeck: deck.length > 0,
+  });
+
   return (
     <>
       <TopBar
