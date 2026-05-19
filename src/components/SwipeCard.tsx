@@ -85,7 +85,7 @@ export function SwipeCard({
   return (
     <motion.div
       className="absolute inset-0 select-none"
-      style={{ x, rotate, zIndex: 50 - stackIndex, touchAction: isTop ? "pan-y" : "none" }}
+      style={{ x, rotate, zIndex: 50 - stackIndex, touchAction: "none" }}
       initial={{ scale, y, opacity: stackIndex > 2 ? 0 : 1 }}
       animate={{ scale, y, opacity: stackIndex > 2 ? 0 : 1 }}
       onPointerDown={handlePointerDown}

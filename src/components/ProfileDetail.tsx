@@ -62,7 +62,7 @@ export function ProfileDetail({
           </div>
         )}
 
-        <div className="mt-4 flex-1 space-y-3 overflow-y-auto no-scrollbar">
+        <div className="mt-4 flex min-h-0 flex-1 flex-col gap-3 overflow-hidden">
           <div className="flex flex-wrap gap-2">
             {profile.category && (
               <Badge className="gradient-primary border-0 text-primary-foreground">
@@ -96,7 +96,11 @@ export function ProfileDetail({
           )}
 
           {profile.looking_for && (
-            <div className="rounded-xl border border-border/60 bg-secondary/50 p-3">
+            <div
+              className="min-h-0 flex-1 overflow-y-auto overscroll-contain rounded-xl border border-border/60 bg-secondary/50 p-3 no-scrollbar"
+              style={{ touchAction: "pan-y" }}
+              onPointerDown={(e) => e.stopPropagation()}
+            >
               <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                 Looking for
               </p>
