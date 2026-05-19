@@ -1,29 +1,33 @@
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerFooter } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const COMPANY_TYPES = ["Startup", "Corporate", "Investor", "NGO", "Government"] as const;
-export const DEPARTMENTS = ["Finance", "Engineering", "Sales", "Product", "Policy"] as const;
 
 export type Filters = {
   companyTypes: string[];
-  departments: string[];
+  tags: string[];
+  allStars: boolean;
 };
 
-export const emptyFilters: Filters = { companyTypes: [], departments: [] };
+export const emptyFilters: Filters = { companyTypes: [], tags: [], allStars: false };
 
 export function FilterDrawer({
   open,
   onOpenChange,
   filters,
   onChange,
+  availableTags,
 }: {
   open: boolean;
   onOpenChange: (o: boolean) => void;
   filters: Filters;
   onChange: (f: Filters) => void;
+  availableTags: string[];
 }) {
-  const toggle = (key: keyof Filters, value: string) => {
+  const toggleArr = (key: "companyTypes" | "tags", value: string) => {
     const arr = filters[key];
     onChange({
       ...filters,
@@ -53,7 +57,21 @@ export function FilterDrawer({
           <DrawerHeader>
             <DrawerTitle className="text-xl font-extrabold">Filters</DrawerTitle>
           </DrawerHeader>
-          <div className="space-y-6 px-4 pb-4">
+          <div className="max-h-[60vh] space-y-6 overflow-y-auto px-4 pb-4">
+            <div className="flex items-center justify-between rounded-2xl border border-border/60 bg-secondary/40 p-3">
+              <div className="flex items-center gap-2">
+                <Star className="h-4 w-4 text-primary" fill="currentColor" />
+                <div>
+                  <p className="text-sm font-bold">All-Stars only</p>
+                  <p className="text-xs text-muted-foreground">Show featured profiles</p>
+                </div>
+              </div>
+              <Switch
+                checked={filters.allStars}
+                onCheckedChange={(v) => onChange({ ...filters, allStars: v })}
+              />
+            </div>
+
             <div>
               <h4 className="mb-3 text-xs font-bold uppercase tracking-widest text-muted-foreground">
                 Company Type
@@ -64,25 +82,29 @@ export function FilterDrawer({
                     key={t}
                     label={t}
                     active={filters.companyTypes.includes(t)}
-                    onClick={() => toggle("companyTypes", t)}
+                    onClick={() => toggleArr("companyTypes", t)}
                   />
                 ))}
               </div>
             </div>
             <div>
               <h4 className="mb-3 text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                Department
+                Tags
               </h4>
-              <div className="flex flex-wrap gap-2">
-                {DEPARTMENTS.map((d) => (
-                  <Chip
-                    key={d}
-                    label={d}
-                    active={filters.departments.includes(d)}
-                    onClick={() => toggle("departments", d)}
-                  />
-                ))}
-              </div>
+              {availableTags.length === 0 ? (
+                <p className="text-sm text-muted-foreground">No tags available.</p>
+              ) : (
+                <div className="flex flex-wrap gap-2">
+                  {availableTags.map((t) => (
+                    <Chip
+                      key={t}
+                      label={t}
+                      active={filters.tags.includes(t)}
+                      onClick={() => toggleArr("tags", t)}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
           <DrawerFooter className="flex-row gap-2">
