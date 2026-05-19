@@ -62,7 +62,7 @@ export function ProfileDetail({
           </div>
         )}
 
-        <div className="mt-4 flex-1 space-y-3 overflow-y-auto no-scrollbar">
+        <div className="mt-4 flex min-h-0 flex-1 flex-col gap-3 overflow-hidden">
           <div className="flex flex-wrap gap-2">
             {profile.category && (
               <Badge className="gradient-primary border-0 text-primary-foreground">
