@@ -160,7 +160,8 @@ export function applyFilters(
   profiles: Profile[],
   search: string,
   companyTypes: string[],
-  departments: string[],
+  tags: string[],
+  allStars: boolean = false,
 ): Profile[] {
   const q = search.trim().toLowerCase();
   return profiles.filter((p) => {
@@ -169,7 +170,11 @@ export function applyFilters(
       if (!hay.includes(q)) return false;
     }
     if (companyTypes.length && !companyTypes.includes(p.company_type ?? "")) return false;
-    if (departments.length && !departments.includes(p.department ?? "")) return false;
+    if (tags.length) {
+      const profileTags = p.tags ?? [];
+      if (!tags.some((t) => profileTags.includes(t))) return false;
+    }
+    if (allStars && !p.all_star) return false;
     return true;
   });
 }
