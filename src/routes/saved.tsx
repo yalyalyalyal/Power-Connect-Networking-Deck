@@ -37,10 +37,16 @@ function Saved() {
 
   const list = useMemo(() => {
     const onlySaved = profiles.filter((p) => savedIds.has(p.id));
-    return applyFilters(onlySaved, search, filters.companyTypes, filters.departments);
+    return applyFilters(onlySaved, search, filters.companyTypes, filters.tags, filters.allStars);
   }, [profiles, savedIds, search, filters]);
 
-  const activeFilterCount = filters.companyTypes.length + filters.departments.length;
+  const availableTags = useMemo(() => {
+    const set = new Set<string>();
+    for (const p of profiles) if (savedIds.has(p.id)) for (const t of p.tags ?? []) if (t) set.add(t);
+    return [...set].sort();
+  }, [profiles, savedIds]);
+
+  const activeFilterCount = filters.companyTypes.length + filters.tags.length + (filters.allStars ? 1 : 0);
 
   const handleRemove = (profileId: string) => {
     toggleBookmark.mutate({ profileId, save: false });
@@ -131,6 +137,7 @@ function Saved() {
         onOpenChange={setFiltersOpen}
         filters={filters}
         onChange={setFilters}
+        availableTags={availableTags}
       />
 
       <Dialog open={!!expanded} onOpenChange={(o) => !o && setExpanded(null)}>

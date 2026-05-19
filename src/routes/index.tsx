@@ -47,8 +47,14 @@ function Discover() {
   const bookmarkedIds = useMemo(() => new Set(bookmarks.map((b) => b.profile_id)), [bookmarks]);
   const rejectedIds = useMemo(() => new Set(rejections.map((r) => r.profile_id)), [rejections]);
 
+  const availableTags = useMemo(() => {
+    const set = new Set<string>();
+    for (const p of profiles) for (const t of p.tags ?? []) if (t) set.add(t);
+    return [...set].sort();
+  }, [profiles]);
+
   const deck = useMemo(() => {
-    const filtered = applyFilters(profiles, search, filters.companyTypes, filters.departments);
+    const filtered = applyFilters(profiles, search, filters.companyTypes, filters.tags, filters.allStars);
     return filtered.filter((p) => !rejectedIds.has(p.id) && !bookmarkedIds.has(p.id));
   }, [profiles, search, filters, rejectedIds, bookmarkedIds]);
 
@@ -76,7 +82,7 @@ function Discover() {
     toast("Last action undone", { className: "border-primary/40" });
   };
 
-  const activeFilterCount = filters.companyTypes.length + filters.departments.length;
+  const activeFilterCount = filters.companyTypes.length + filters.tags.length + (filters.allStars ? 1 : 0);
   const top = deck[0];
 
   useOnboardingTour({
@@ -150,6 +156,7 @@ function Discover() {
         onOpenChange={setFiltersOpen}
         filters={filters}
         onChange={setFilters}
+        availableTags={availableTags}
       />
     </>
   );
