@@ -57,7 +57,7 @@ export function useOnboardingTour({
         steps: [
           {
             popover: {
-              title: "Welcome to ETW-Connect 👋",
+              title: "Welcome to POWER CONNECT 👋",
               description:
                 "A quick 60-second tour of how to find and save the right people at Energy Tech Week 2026.",
             },
@@ -124,7 +124,7 @@ export function useOnboardingTour({
           {
             popover: {
               title: "You're ready ⚡",
-              description: "Start swiping and build your Energy Tech Week network.",
+              description: "Start swiping and build your network with POWER CONNECT.",
             },
           },
         ],
