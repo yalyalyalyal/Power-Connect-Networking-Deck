@@ -20,7 +20,7 @@ export function TopBar({
         <div className="mb-3 flex items-center justify-between">
           <Logo className="h-7" />
           <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary text-glow">
-            Connect
+            POWER CONNECT
           </span>
         </div>
         <div className="flex items-center gap-2">
