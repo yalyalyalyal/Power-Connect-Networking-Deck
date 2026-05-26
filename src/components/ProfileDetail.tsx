@@ -42,7 +42,7 @@ export function ProfileDetail({
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  onPointerDown={(e) => e.stopPropagation()}
+                  /* REMOVED: onPointerDown={(e) => e.stopPropagation()} */
                   className="shrink-0 rounded-full p-1.5 transition-transform hover:scale-110"
                   style={{ background: "var(--linkedin)" }}
                   aria-label="Open LinkedIn profile"
@@ -99,7 +99,7 @@ export function ProfileDetail({
             <div
               className="min-h-0 flex-1 overflow-y-auto overscroll-contain rounded-xl border border-border/60 bg-secondary/50 p-3 no-scrollbar"
               style={{ touchAction: "pan-y" }}
-              onPointerDown={(e) => e.stopPropagation()}
+              /* REMOVED: onPointerDown={(e) => e.stopPropagation()} */
             >
               <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                 Looking for
