@@ -62,7 +62,7 @@ export function FilterDrawer({
               <div className="flex items-center gap-2">
                 <Star className="h-4 w-4 text-primary" fill="currentColor" />
                 <div>
-                  <p className="text-sm font-bold">All-Stars only</p>
+                  <p className="text-sm font-bold">All-Stars</p>
                   <p className="text-xs text-muted-foreground">Show featured profiles</p>
                 </div>
               </div>
