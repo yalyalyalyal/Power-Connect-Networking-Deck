@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 
-// External read-only Supabase project hosting the TEST2 profiles table.
+// External read-only Supabase project hosting the profiles table.
 const PROFILES_URL = "https://tukqplsjvwrehkwbpojm.supabase.co";
 const PROFILES_KEY = "sb_publishable_lzThihKwRiwuXGUCwCqgjA__Vj0AyQI";
 
@@ -25,7 +25,7 @@ export type Profile = {
 
 export async function fetchProfiles(): Promise<Profile[]> {
   const { data, error } = await profilesClient
-    .from("TEST2")
+    .from("Prod_Profiles")
     .select("*")
     .limit(1000);
   if (error) throw error;
