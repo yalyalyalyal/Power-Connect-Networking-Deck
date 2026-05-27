@@ -143,7 +143,7 @@ function Settings() {
         </section>
 
         <p className="px-2 pt-4 text-center text-[11px] text-muted-foreground">
-          ETW-Connect · Energy Tech Week 2026
+          Power Connect · Energy Tech Week 2026
         </p>
       </main>
     </>
