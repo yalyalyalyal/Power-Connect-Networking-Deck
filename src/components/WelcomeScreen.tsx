@@ -99,7 +99,7 @@ function NetworkDiagram() {
   const nodeR = 26; // satellite circle radius
   const hubR = 38; // central hub radius
 
-  const satellites: { angle: number; label: string; icon?: "person" | "building" }[] = [
+  const satellites: { angle: number; label?: string; icon?: "person" | "building" }[] = [
     { angle: -90, label: "AK" },           // top
     { angle: -20, icon: "building" },       // top-right
     { angle: 50,  label: "JL" },            // bottom-right
