@@ -57,9 +57,9 @@ export function useOnboardingTour({
         steps: [
           {
             popover: {
-              title: "Welcome to POWER CONNECT 👋",
+              title: "Welcome to Power Connect 👋",
               description:
-                "A quick 60-second tour of how to find and save the right people at Energy Tech Week 2026.",
+                "A quick tour of how to find and save the right people at Power Connect 2026.",
             },
           },
           {
