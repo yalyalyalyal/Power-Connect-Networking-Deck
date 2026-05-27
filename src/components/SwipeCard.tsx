@@ -86,8 +86,19 @@ export function SwipeCard({
     <motion.div
       className="absolute inset-0 select-none"
       style={{ x, rotate, zIndex: 50 - stackIndex, touchAction: "none" }}
+      /*
+      // OPTIMIZATION: Bypassing layout recalculation loops.
+      // Passing variables straight into standard initial/animate parameters forces
+      // Framer Motion to recalculate layout paths for all cards simultaneously during dragging.
+      */
+      initial={{ scale: isTop ? 1 : scale - 0.04, y: isTop ? 0 : y + 10, opacity: stackIndex > 2 ? 0 : 1 }}
+      animate={{ scale, y, opacity: stackIndex > 2 ? 0 : 1 }}
+      transition={{ type: "spring", stiffness: 300, damping: 28, mass: 0.8 }}
+      /* 
+      // OLD RENDER PROPERTIES - Keep as backup
       initial={{ scale, y, opacity: stackIndex > 2 ? 0 : 1 }}
       animate={{ scale, y, opacity: stackIndex > 2 ? 0 : 1 }}
+      */
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={finish}
