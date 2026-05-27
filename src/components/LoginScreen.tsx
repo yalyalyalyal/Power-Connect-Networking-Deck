@@ -5,6 +5,24 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mail, Search } from "lucide-react";
 
+
+// Initial Welcome Screen (WelcomeScreen.tsx) to appear before Login screen
+import { WelcomeScreen } from "./WelcomeScreen";
+const [welcomed, setWelcomed] = useState(() =>
+  sessionStorage.getItem("pc-welcomed") === "1"
+);
+
+if (!welcomed) {
+  return (
+    <WelcomeScreen
+      onGetStarted={() => {
+        sessionStorage.setItem("pc-welcomed", "1");
+        setWelcomed(true);
+      }}
+    />
+  );
+}
+
 export function LoginScreen() {
   const { signInWithMagicLink } = useAuth();
   const [email, setEmail] = useState("");
