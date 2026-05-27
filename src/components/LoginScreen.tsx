@@ -7,16 +7,12 @@ import { Mail, Search } from "lucide-react";
 
 
 // Initial Welcome Screen (WelcomeScreen.tsx) to appear before Login screen
-/* Hidden Welcome Screen trigger for testing
 import { WelcomeScreen } from "./WelcomeScreen";
-*/
 
 export function LoginScreen() {
-  /* Hidden Welcome Screen trigger for testing
    const [welcomed, setWelcomed] = useState(() =>
     sessionStorage.getItem("pc-welcomed") === "1"
   );
-  */
   
   const { signInWithMagicLink } = useAuth();
   const [email, setEmail] = useState("");
@@ -24,7 +20,6 @@ export function LoginScreen() {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  /* Hidden Welcome Screen trigger for testing
   if (!welcomed) {
     return (
       <WelcomeScreen
@@ -35,7 +30,6 @@ export function LoginScreen() {
       />
     );
   }
-  */
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
