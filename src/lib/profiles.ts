@@ -25,7 +25,7 @@ export type Profile = {
 
 export async function fetchProfiles(): Promise<Profile[]> {
   const { data, error } = await profilesClient
-    .from("Prod_Profiles")
+    .from("TEST2")
     .select("*")
     .limit(1000);
   if (error) throw error;
