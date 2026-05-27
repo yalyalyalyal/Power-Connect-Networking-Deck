@@ -33,7 +33,7 @@ export function LoginScreen() {
           <div>
             <h1 className="font-semibold tracking-tight text-glow text-slate-50 text-4xl">POWER CONNECT</h1>
             <p className="mt-2 text-sm text-muted-foreground">
-              The networking deck for Power Connect 2026 attendees. Built by <a href="https://www.linkedin.com/in/yalyal/">Eyal Ephrati.</a>
+              The networking deck for Power Connect 2026 attendees. Built by <a href="https://www.linkedin.com/in/yalyal/" target="_blank">Eyal Ephrati.</a>
             </p>
           </div>
         </div>
