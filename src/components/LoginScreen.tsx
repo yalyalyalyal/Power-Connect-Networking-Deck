@@ -8,27 +8,28 @@ import { Mail, Search } from "lucide-react";
 
 // Initial Welcome Screen (WelcomeScreen.tsx) to appear before Login screen
 import { WelcomeScreen } from "./WelcomeScreen";
-const [welcomed, setWelcomed] = useState(() =>
-  sessionStorage.getItem("pc-welcomed") === "1"
-);
-
-if (!welcomed) {
-  return (
-    <WelcomeScreen
-      onGetStarted={() => {
-        sessionStorage.setItem("pc-welcomed", "1");
-        setWelcomed(true);
-      }}
-    />
-  );
-}
 
 export function LoginScreen() {
+  const [welcomed, setWelcomed] = useState(() =>
+    sessionStorage.getItem("pc-welcomed") === "1"
+  );
+
   const { signInWithMagicLink } = useAuth();
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  if (!welcomed) {
+    return (
+      <WelcomeScreen
+        onGetStarted={() => {
+          sessionStorage.setItem("pc-welcomed", "1");
+          setWelcomed(true);
+        }}
+      />
+    );
+  }
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
