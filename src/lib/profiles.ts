@@ -29,7 +29,7 @@ export type Profile = {
 export async function fetchProfiles(): Promise<Profile[]> { 
   // New optimized setup using the main unified application client
   const { data, error } = await supabase
-    .from("TEST2")
+    .from("Prod_Profiles")
     .select("*")
     .limit(500); // Profile display limit to reduce client memory load
   
