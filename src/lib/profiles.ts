@@ -1,4 +1,4 @@
-import { supabase } from "@/integrations/supabase/client"; 
+import { supabase } from "@/integrations/supabase/supabase-singleton"; 
 /*
 // OLD IMPLEMENTATION - Keep for reverting back if needed
 import { createClient } from "@supabase/supabase-js";
