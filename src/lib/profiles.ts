@@ -1,5 +1,5 @@
-/* import { supabase } from "@/integrations/supabase/client"; 
- */
+import { supabase } from "@/integrations/supabase/client"; 
+/*
 // OLD IMPLEMENTATION - Keep for reverting back if needed
 import { createClient } from "@supabase/supabase-js";
 
@@ -9,7 +9,7 @@ const PROFILES_KEY = "sb_publishable_lzThihKwRiwuXGUCwCqgjA__Vj0AyQI";
 export const profilesClient = createClient(PROFILES_URL, PROFILES_KEY, {
   auth: { persistSession: false, autoRefreshToken: false },
 });
-
+ */
 
 export type Profile = {
   id: string;
@@ -26,21 +26,20 @@ export type Profile = {
   all_star: boolean | null;
 };
 
-export async function fetchProfiles(): Promise<Profile[]> {
-  /* 
+export async function fetchProfiles(): Promise<Profile[]> { 
   // New optimized setup using the main unified application client
   const { data, error } = await supabase
     .from("TEST2")
     .select("*")
     .limit(500); // Profile display limit to reduce client memory load
-    */
-
+  
+  /*
   // OLD QUERY IMPLEMENTATION
   const { data, error } = await profilesClient
     .from("TEST2")
     .select("*")
     .limit(500); // Profile display limit to reduce client memory load
-  
+  */
   if (error) throw error;
   return (data ?? []) as Profile[];
 }
