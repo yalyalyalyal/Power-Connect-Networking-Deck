@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import type { Session, User } from "@supabase/supabase-js";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase } from "@/integrations/supabase/supabase-singleton";
 
 const TEST_EMAIL = "test@test.test";
 const TEST_FLAG_KEY = "etw-test-mode";
