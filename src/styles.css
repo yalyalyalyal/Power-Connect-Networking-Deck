@@ -161,3 +161,13 @@
 .etw-tour .driver-popover-arrow-side-bottom.driver-popover-arrow { border-bottom-color: var(--card); }
 .etw-tour .driver-popover-arrow-side-left.driver-popover-arrow { border-left-color: var(--card); }
 .etw-tour .driver-popover-arrow-side-right.driver-popover-arrow { border-right-color: var(--card); }
+
+/* Permanent Lovable Badge Removal */
+[id*="lovable-badge"], 
+#lovable-badge, 
+iframe[src*="lovable"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
