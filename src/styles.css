@@ -37,49 +37,49 @@
 
 :root {
   --radius: 1rem;
-  /* Deep ETW navy */
-  --background: oklch(0.18 0.12 285);
-  --foreground: oklch(0.98 0.01 300);
+  
+  /* ── YOUR CUSTOM DEVTOOLS PALETTE ── */
+  --background: oklch(0.6733 0.187 290.31);
+  --foreground: oklch(98% .01 300);
 
-  --card: oklch(0.23 0.13 285);
-  --card-foreground: oklch(0.98 0.01 300);
+  --card: oklch(0.6733 0.187 290.31);
+  --card-foreground: oklch(98% .01 300);
 
-  --popover: oklch(0.21 0.12 285);
-  --popover-foreground: oklch(0.98 0.01 300);
+  --popover: oklch(0.3 0.19 273.69);
+  --popover-foreground: oklch(98% .01 300);
 
-  /* Neon purple primary */
-  --primary: oklch(0.68 0.22 320);
-  --primary-foreground: oklch(0.12 0.05 285);
+  --primary: oklch(1 0 0);
+  --primary-foreground: oklch(0.6733 0.187 290.31);
 
-  --secondary: oklch(0.28 0.1 285);
-  --secondary-foreground: oklch(0.98 0.01 300);
+  --secondary: oklch(0.54 0.2 287.89);
+  --secondary-foreground: oklch(98% .01 300);
 
-  --muted: oklch(0.27 0.08 285);
-  --muted-foreground: oklch(0.78 0.05 300);
+  --muted: oklch(0.47 0.13 290.5);
+  --muted-foreground: oklch(0.96 0.02 300.64);
 
-  --accent: oklch(0.55 0.25 305);
-  --accent-foreground: oklch(0.98 0.01 300);
+  --accent: oklch(0.81 0.16 316.59);
+  --accent-foreground: oklch(0.81 0.16 316.59);
 
-  --destructive: oklch(0.65 0.24 20);
-  --destructive-foreground: oklch(0.98 0.01 300);
+  --destructive: oklch(0.73 0.21 16.86);
+  --destructive-foreground: oklch(98% .01 300);
 
-  --border: oklch(0.35 0.1 290 / 50%);
-  --input: oklch(0.3 0.1 285);
-  --ring: oklch(0.68 0.22 320);
+  --border: oklch(35% .1 290 / .5);
+  --input: oklch(0.55 0.11 292.57);
+  --ring: oklch(0.81 0.16 316.59);
 
-  --glow: oklch(0.7 0.25 315);
-  --linkedin: oklch(0.5 0.18 250);
+  --glow: oklch(0.81 0.16 316.59);
+  --linkedin: oklch(50% .18 250);
 
-  --gradient-primary: linear-gradient(135deg, oklch(0.55 0.25 305), oklch(0.7 0.22 325));
-  --gradient-bg: radial-gradient(ellipse at top, oklch(0.25 0.18 290) 0%, oklch(0.16 0.1 285) 60%);
-  --shadow-glow: 0 0 40px oklch(0.68 0.22 320 / 35%), 0 8px 30px oklch(0.1 0.08 285 / 60%);
-  --shadow-card: 0 20px 60px -10px oklch(0.05 0.05 285 / 70%);
+  --gradient-primary: linear-gradient(135deg, oklch(0.7 0.17 309.12), oklch(0.81 0.16 316.59));
+  --gradient-bg: radial-gradient(ellipse at top, oklch(25% .18 290) 0%, oklch(0.45 0.18 286.67));
+  --shadow-glow: 0 0 40px oklch(68% .22 320 / .35), 0 8px 30px oklch(0.36 0.07 288.58 / 0.6);
+  --shadow-card: 0 20px 60px -10px oklch(0.31 0.12 280.38 / 0.43);
 }
 
 .dark {
-  /* Same as root – app is dark-only */
-  --background: oklch(0.18 0.12 285);
-  --foreground: oklch(0.98 0.01 300);
+  /* Aligned background & foreground tokens to mirror root layout setup */
+  --background: oklch(0.6733 0.187 290.31);
+  --foreground: oklch(98% .01 300);
 }
 
 @layer base {
@@ -95,11 +95,16 @@
 }
 
 @layer utilities {
+  /* Custom color override utility from DevTools */
+  .text-primary-foreground {
+    color: oklch(1 0 0);
+  }
+
   .glow {
     box-shadow: var(--shadow-glow);
   }
   .text-glow {
-    text-shadow: 0 0 18px oklch(0.7 0.25 315 / 55%);
+    text-shadow: 0 0 18px oklch(0.81 0.16 316.59 / 55%);
   }
   .gradient-primary {
     background: var(--gradient-primary);
