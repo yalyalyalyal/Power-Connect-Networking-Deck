@@ -88,8 +88,8 @@ export function FilterDrawer({
                 ))}
               </div>
             </div>
-            <div>
             */}
+            <div>
               <h4 className="mb-3 text-xs font-bold uppercase tracking-widest text-muted-foreground">
                 Tags
               </h4>
