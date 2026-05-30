@@ -4,15 +4,16 @@ import { Switch } from "@/components/ui/switch";
 import { Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export const COMPANY_TYPES = ["Startup", "Corporate", "Investor", "NGO", "Government"] as const;
+/* REMOVED: export const COMPANY_TYPES = ["Startup", "Corporate", "Investor", "NGO", "Government"] as const; */
 
 export type Filters = {
-  companyTypes: string[];
+  /* REMOVED: companyTypes: string[]; */
   tags: string[];
   allStars: boolean;
 };
 
-export const emptyFilters: Filters = { companyTypes: [], tags: [], allStars: false };
+/* REMOVED companyTypes: [], from emptyFilters */
+export const emptyFilters: Filters = { tags: [], allStars: false };
 
 export function FilterDrawer({
   open,
@@ -71,7 +72,7 @@ export function FilterDrawer({
                 onCheckedChange={(v) => onChange({ ...filters, allStars: v })}
               />
             </div>
-
+            {/* REMOVED COMPANY TYPE FILTERS
             <div>
               <h4 className="mb-3 text-xs font-bold uppercase tracking-widest text-muted-foreground">
                 Company Type
@@ -88,6 +89,7 @@ export function FilterDrawer({
               </div>
             </div>
             <div>
+            */}
               <h4 className="mb-3 text-xs font-bold uppercase tracking-widest text-muted-foreground">
                 Tags
               </h4>
