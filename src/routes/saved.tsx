@@ -37,16 +37,18 @@ function Saved() {
 
   const list = useMemo(() => {
     const onlySaved = profiles.filter((p) => savedIds.has(p.id));
-    return applyFilters(onlySaved, search, filters.companyTypes, filters.tags, filters.allStars);
+    return applyFilters(onlySaved, search, [], filters.tags, filters.allStars);
   }, [profiles, savedIds, search, filters]);
-
+    /* Replaced 'filters.companyTypes' with an empty array '[]' to remove companyType filter while
+    satisfying the hook's method arguments.*/
   const availableTags = useMemo(() => {
     const set = new Set<string>();
     for (const p of profiles) if (savedIds.has(p.id)) for (const t of p.tags ?? []) if (t) set.add(t);
     return [...set].sort();
   }, [profiles, savedIds]);
-
-  const activeFilterCount = filters.companyTypes.length + filters.tags.length + (filters.allStars ? 1 : 0);
+  
+  /* Removed 'filters.companyTypes.length +' from the count */
+  const activeFilterCount = filters.tags.length + (filters.allStars ? 1 : 0);
 
   const handleRemove = (profileId: string) => {
     toggleBookmark.mutate({ profileId, save: false });
