@@ -96,7 +96,7 @@ export function useOnboardingTour({
             popover: {
               title: "Filter the deck",
               description:
-                "Narrow the deck down by <b>company type</b> and <b>department</b> to focus your time.",
+                "Focus profiles by tags to swipe efficiently.",
               side: "bottom",
               align: "end",
             },
