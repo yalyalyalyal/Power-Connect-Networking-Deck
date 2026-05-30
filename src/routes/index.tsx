@@ -53,8 +53,10 @@ function Discover() {
     return [...set].sort();
   }, [profiles]);
 
+  /* Replaced 'filters.companyTypes' with an empty array '[]'. 
+       This allows the filter module hook to evaluate search, tags, and all-stars correctly. */
   const deck = useMemo(() => {
-    const filtered = applyFilters(profiles, search, filters.companyTypes, filters.tags, filters.allStars);
+    const filtered = applyFilters(profiles, search, [], filters.tags, filters.allStars);
     return filtered.filter((p) => !rejectedIds.has(p.id) && !bookmarkedIds.has(p.id));
   }, [profiles, search, filters, rejectedIds, bookmarkedIds]);
 
@@ -82,7 +84,8 @@ function Discover() {
     toast("Last action undone", { className: "border-primary/40" });
   };
 
-  const activeFilterCount = filters.companyTypes.length + filters.tags.length + (filters.allStars ? 1 : 0);
+  /* Removed 'filters.companyTypes.length +' from the activeFilterCountcalculation */
+  const activeFilterCount = filters.tags.length + (filters.allStars ? 1 : 0);
   const top = deck[0];
 
   useOnboardingTour({
