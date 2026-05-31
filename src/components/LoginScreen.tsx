@@ -111,7 +111,10 @@ export function LoginScreen() {
           </form>
         )}
         <p className="px-2 pt-4 text-center text-[11px] text-muted-foreground">
-          Power Connect · Energy Tech Week 2026 · Built by <a href="https://www.linkedin.com/in/yalyal/" target="_blank">Eyal Ephrati</a>
+          Power Connect · Energy Tech Week 2026 · Ignite The Spark
+        <p/>
+        <p className="px-2 pt-4 text-center text-[11px] text-muted-foreground">
+          Built by <a href="https://www.linkedin.com/in/yalyal/" target="_blank">Eyal Ephrati</a>
         </p>
       </div>
     </div>
