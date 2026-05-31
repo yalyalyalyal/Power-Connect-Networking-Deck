@@ -56,7 +56,7 @@ export function LoginScreen() {
         <div className="flex flex-col items-center gap-4 text-center">
           <Logo className="h-10" />
           <div>
-            <h1 className="font-semibold tracking-tight text-glow text-slate-50 text-4xl">POWER CONNECT</h1>
+            <h1 className="font-bold tracking-tight text-glow" style="font-size: 2rem;">POWER CONNECT</h1>
             <p className="mt-2 text-sm text-muted-foreground">
               The networking deck for Power Connect 2026 attendees. Built by <a href="https://www.linkedin.com/in/yalyal/" target="_blank">Eyal Ephrati.</a>
             </p>
