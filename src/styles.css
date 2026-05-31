@@ -38,11 +38,10 @@
 :root {
   --radius: 1rem;
   
-  /* Updated to Lighter Navy Palette */
-  --background: oklch(0.35 0.18 286.9);
+  --background: oklch(0.2094 0.0893 293.63);
   --foreground: oklch(98% .01 300);
   
-  --card: oklch(0.36 0.19 286.92);
+  --card: oklch(0.2094 0.0893 293.63);
   --card-foreground: oklch(98% .01 300);
   
   --popover: oklch(21% .12 285);
@@ -55,22 +54,22 @@
   --secondary-foreground: oklch(98% .01 300);
   
   --muted: oklch(27% .08 285);
-  --muted-foreground: oklch(78% .05 300);
+  --muted-foreground: oklch(0.98 0.01 300 / 0.74);
   
-  --accent: oklch(55% .25 305);
+  --accent: oklch(0.68 0.22 320);
   --accent-foreground: oklch(98% .01 300);
   
   --destructive: oklch(0.64 0.18 16.4);
   --destructive-foreground: oklch(98% .01 300);
   
-  --border: oklch(35% .1 290 / .5);
+  --border: oklch(0.3 0.11 296.02);
   --input: oklch(0.52 0.09 289.07);
   --ring: oklch(0.68 0.22 320);
   
   --glow: oklch(0.68 0.22 320);
   --linkedin: oklch(50% .18 250);
   
-  --gradient-primary: linear-gradient(135deg, oklch(55% .25 305), oklch(70% .22 325));
+  --gradient-primary: linear-gradient(135deg, oklch(0.71 0.19 320.24), oklch(0.52 0.19 319.85));
   --gradient-bg: radial-gradient(ellipse at top, oklch(0.37 0.18 294.1) 0%, oklch(0.28 0.14 284.12) 60%);
   
   --shadow-glow: 0 0 40px oklch(0.68 0.22 320 / 0.28), 0 8px 30px oklch(0.11 0.07 280.53 / 0.41);
@@ -78,8 +77,8 @@
 }
 
 .dark {
-  /* Same as root â€“ app is dark-only */
-  --background: oklch(0.35 0.18 286.9);
+  /* Same as root - app is dark-only */
+  --background: oklch(0.2094 0.0893 293.63);
   --foreground: oklch(0.98 0.01 300);
 }
 
@@ -102,7 +101,6 @@
   /* Reduced text glow for readability */
   .text-glow {
     text-shadow:0 0 18px oklch(0.7 0.25 315 / 0.16);
-
   }
   .gradient-primary {
     background: var(--gradient-primary);
