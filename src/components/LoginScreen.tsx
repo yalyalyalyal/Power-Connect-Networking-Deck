@@ -58,7 +58,7 @@ export function LoginScreen() {
           <div>
             <h1 className="font-bold tracking-tight text-glow text-4xl">POWER CONNECT</h1>
             <p className="mt-2 text-sm text-muted-foreground">
-              The networking deck for Power Connect 2026 attendees. Built by <a href="https://www.linkedin.com/in/yalyal/" target="_blank">Eyal Ephrati.</a>
+              The Energy Tech networking deck brought to you by Ignite The Spark.
             </p>
           </div>
         </div>
@@ -110,6 +110,9 @@ export function LoginScreen() {
             </p>
           </form>
         )}
+        <p className="px-2 pt-4 text-center text-[11px] text-muted-foreground">
+          Power Connect · Energy Tech Week 2026 · Built by <a href="https://www.linkedin.com/in/yalyal/" target="_blank">Eyal Ephrati</a>
+        </p>
       </div>
     </div>
   );
