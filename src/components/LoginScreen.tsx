@@ -110,10 +110,10 @@ export function LoginScreen() {
             </p>
           </form>
         )}
-        <p className="px-2 pt-4 text-center text-[11px] text-muted-foreground">
-          Power Connect · Energy Tech Week 2026 · Ignite The Spark
+        <p className="px-1 pt-1 text-center text-[11px] text-muted-foreground">
+          Ignite The Spark 2026
         </p>
-        <p className="px-2 pt-4 text-center text-[11px] text-muted-foreground">
+        <p className="px-1 pt-1 text-center text-[11px] text-muted-foreground">
           Built by <a href="https://www.linkedin.com/in/yalyal/" target="_blank">Eyal Ephrati</a>
         </p>
       </div>
