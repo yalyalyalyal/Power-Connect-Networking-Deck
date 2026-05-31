@@ -101,7 +101,7 @@
   }
   /* Reduced text glow for readability */
   .text-glow {
-    {text-shadow:0 0 18px oklch(0.7 0.25 315 / 0.16);
+    text-shadow:0 0 18px oklch(0.7 0.25 315 / 0.16);
 
   }
   .gradient-primary {
