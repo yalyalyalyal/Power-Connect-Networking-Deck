@@ -20,6 +20,7 @@ type AuthCtx = {
   loading: boolean;
   isTestUser: boolean;
   signInWithMagicLink: (email: string) => Promise<{ error: string | null; test?: boolean }>;
+  verifyOtpCode: (email: string, token: string) => Promise<{ error: string | null }>; // Added OTP code verification function to the context type definition
   signOut: () => Promise<void>;
 };
 
@@ -60,7 +61,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
     return { error: error?.message ?? null };
   };
-
+  
+  /* Added new function to explicitly verify the 6-digit numerical OTP token submitted by the user */
+  const verifyOtpCode = async (email: string, token: string) => {
+    const { data, error } = await supabase.auth.verifyOtp({
+      email,
+      token,
+      type: "email", // Tells Supabase this is a standard email token check
+    });
+    
+    if (error) return { error: error.message };
+    if (data.session) setSession(data.session);
+    return { error: null };
+  };
   const signOut = async () => {
     if (testUser) {
       localStorage.removeItem(TEST_FLAG_KEY);
@@ -79,6 +92,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         loading,
         isTestUser: !!testUser && !session,
         signInWithMagicLink,
+        verifyOtpCode, // Passed the new function down into the Auth context provider
         signOut,
       }}
     >
