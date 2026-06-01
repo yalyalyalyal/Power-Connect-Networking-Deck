@@ -107,7 +107,7 @@ export function LoginScreen() {
               {loading ? "Sending magic link..." : "Send magic link"}
             </Button>
             <p className="text-center text-[11px] text-muted-foreground">
-              No password needed. We'll email you a secure sign-in link.
+              No password needed. We'll email you a secure login link.
             </p>
           </form>
         ) : (
@@ -126,7 +126,7 @@ export function LoginScreen() {
                   pattern="\d*" // Forces numerical keypad layout on mobile devices
                   value={otpCode}
                   onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, ""))} // Rejects any non-numeric letters
-                  placeholder="123456"
+                  placeholder="------"
                   className="h-12 text-center text-lg font-bold tracking-[0.5em] rounded-xl bg-secondary/50 pl-9"
                 />
               </div>
@@ -148,7 +148,7 @@ export function LoginScreen() {
                 setError(null);
                 setOtpCode("");
               }}
-              className="w-full text-center text-xs font-semibold text-muted-foreground hover:text-foreground underline transition-colors"
+              className="w-full text-center text-xs font-semibold text-glow hover:text-foreground no-underline transition-colors"
             >
               ← Back to email entry
             </button>
