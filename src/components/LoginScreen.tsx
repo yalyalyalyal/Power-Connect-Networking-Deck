@@ -78,40 +78,25 @@ export function LoginScreen() {
             </p>
           </div>
         </div>
-
-        {sent ? (
-          <div className="rounded-2xl border border-primary/40 bg-card p-6 text-center card-shadow">
-            <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full gradient-primary glow">
-              <Search className="h-6 w-6 text-primary-foreground text-slate-50" />
-            </div>
-            <h2 className="text-lg font-bold">Check your inbox</h2>
-            <p className="mt-2 text-sm text-muted-foreground">
-              We sent a magic link to <span className="font-semibold text-foreground">{email}</span>.<br />
-              Please open it in your preferred device browser to stay connected.
-            </p>
-            <button
-              type="button"
-              onClick={() => setSent(false)}
-              className="mt-4 text-xs font-semibold text-primary hover:underline"
-            >
-              Use a different email
-            </button>
-          </div>
-        ) : (
-          <form onSubmit={onSubmit} className="space-y-4 rounded-2xl border border-border/60 bg-card p-6 card-shadow">
-            <label className="block text-xs font-bold uppercase tracking-widest text-muted-foreground">
-              Email address
-            </label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@company.com"
-                className="h-12 rounded-xl bg-secondary/50 pl-9"
-              />
+        
+{/* CHANGED: Switched from displaying simple success text to conditionally rendering the Code Verification Form */}
+        {!sent ? (
+          <form onSubmit={onSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <label className="block text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                Email address
+              </label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@company.com"
+                  className="h-12 rounded-xl bg-secondary/50 pl-9"
+                />
+              </div>
             </div>
             {error && <p className="text-xs text-destructive">{error}</p>}
             <Button
@@ -122,10 +107,54 @@ export function LoginScreen() {
               {loading ? "Sending magic link..." : "Send magic link"}
             </Button>
             <p className="text-center text-[11px] text-muted-foreground">
-              No password needed. We'll email you a secure login link.
+              No password needed. We'll email you a secure sign-in link.
             </p>
           </form>
+        ) : (
+          /* CHANGED: Added new sub-form to allow entering the verification token manually */
+          <form onSubmit={onVerifyOtp} className="space-y-4">
+            <div className="space-y-2">
+              <label className="block text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                6-Digit Secure Code
+              </label>
+              <div className="relative">
+                <KeyRound className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Input
+                  type="text"
+                  required
+                  maxLength={6}
+                  pattern="\d*" // Forces numerical keypad layout on mobile devices
+                  value={otpCode}
+                  onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, ""))} // Rejects any non-numeric letters
+                  placeholder="123456"
+                  className="h-12 text-center text-lg font-bold tracking-[0.5em] rounded-xl bg-secondary/50 pl-9"
+                />
+              </div>
+            </div>
+            {error && <p className="text-xs text-destructive">{error}</p>}
+            <Button
+              type="submit"
+              disabled={verifying || otpCode.length < 6}
+              className="h-12 w-full gradient-primary border-0 text-base font-bold glow text-slate-50"
+            >
+              {verifying ? "Verifying token..." : "Verify & Sign In"}
+            </Button>
+            
+            {/* Allows user to correct an accidental typo in their email address */}
+            <button
+              type="button"
+              onClick={() => {
+                setSent(false);
+                setError(null);
+                setOtpCode("");
+              }}
+              className="w-full text-center text-xs font-semibold text-muted-foreground hover:text-foreground underline transition-colors"
+            >
+              ← Back to email entry
+            </button>
+          </form>
         )}
+        
         <p className="px-1 pt-1 text-center text-[11px] text-muted-foreground">
           Ignite The Spark 2026 <br />
           Built by <a href="https://www.linkedin.com/in/yalyal/" target="_blank">Eyal Ephrati</a>
