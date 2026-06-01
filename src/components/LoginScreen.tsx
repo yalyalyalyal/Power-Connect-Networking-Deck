@@ -4,10 +4,10 @@ import { Logo } from "./Logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mail, Search } from "lucide-react";
+import { Mail, KeyRound } from "lucide-react"; // Imported KeyRound icon to represent the passcode field
 
-
-// Initial Welcome Screen (WelcomeScreen.tsx) to appear before Login screen
 /* Hidden Welcome Screen trigger for testing
+// Initial Welcome Screen (WelcomeScreen.tsx) to appear before Login screen
 import { WelcomeScreen } from "./WelcomeScreen";
 */
 
@@ -18,9 +18,11 @@ export function LoginScreen() {
   );
   */
   
-  const { signInWithMagicLink } = useAuth();
+  const { signInWithMagicLink, verifyOtpCode } = useAuth(); // Destructured verifyOtpCode from hook
   const [email, setEmail] = useState("");
+  const [otpCode, setOtpCode] = useState(""); // Added state tracker for the 6-digit token text input
   const [loading, setLoading] = useState(false);
+  const [verifying, setVerifying] = useState(false); // Added loading indicator state specifically for the verification step
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -49,7 +51,21 @@ export function LoginScreen() {
       return;
     } else setSent(true);
   };
-
+  
+// Added a separate submission handler for checking the typed 6-digit authorization code
+  const onVerifyOtp = async (e: FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setVerifying(true);
+    
+    const { error } = await verifyOtpCode(email.trim().toLowerCase(), otpCode.trim());
+    setVerifying(false);
+    
+    if (error) {
+      setError("This code is incorrect or expired. Please try again.");
+    }
+  };
+  
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-6 py-10">
       <div className="w-full max-w-sm space-y-8">
@@ -70,7 +86,7 @@ export function LoginScreen() {
             </div>
             <h2 className="text-lg font-bold">Check your inbox</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              We sent a magic link to <span className="font-semibold text-foreground">{email}</span>.
+              We sent a magic link to <span className="font-semibold text-foreground">{email}</span>.<br />
               Please open it in your preferred device browser to stay connected.
             </p>
             <button
@@ -106,14 +122,12 @@ export function LoginScreen() {
               {loading ? "Sending magic link..." : "Send magic link"}
             </Button>
             <p className="text-center text-[11px] text-muted-foreground">
-              No password needed. We'll email you a secure sign-in link.
+              No password needed. We'll email you a secure login link.
             </p>
           </form>
         )}
         <p className="px-1 pt-1 text-center text-[11px] text-muted-foreground">
-          Ignite The Spark 2026
-        </p>
-        <p className="px-1 pt-1 text-center text-[11px] text-muted-foreground">
+          Ignite The Spark 2026 <br />
           Built by <a href="https://www.linkedin.com/in/yalyal/" target="_blank">Eyal Ephrati</a>
         </p>
       </div>
