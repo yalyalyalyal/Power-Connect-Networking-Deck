@@ -73,7 +73,7 @@ export function LoginScreen() {
           <div>
             <h1 className="font-bold tracking-tight text-glow text-[2rem]">POWER CONNECT</h1>
             <p className="mt-2 text-sm text-muted-foreground">
-              The Energy Tech networking deck for Power Connect 2026.
+              Demo Version of the Energy Tech networking deck for Power Connect 2026. 
             </p>
           </div>
         </div>
