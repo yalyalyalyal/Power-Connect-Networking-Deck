@@ -3,8 +3,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { Logo } from "./Logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Mail, Search } from "lucide-react";
-import { Mail, KeyRound } from "lucide-react"; // Imported KeyRound icon to represent the passcode field
+import { Mail, Search, KeyRound} from "lucide-react";
 
 /* Hidden Welcome Screen trigger for testing
 // Initial Welcome Screen (WelcomeScreen.tsx) to appear before Login screen
