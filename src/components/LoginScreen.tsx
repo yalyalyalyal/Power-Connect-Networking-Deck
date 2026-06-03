@@ -149,7 +149,7 @@ export function LoginScreen() {
               }}
               className="w-full text-center text-xs font-semibold text-glow hover:text-foreground no-underline transition-colors"
             >
-              ← Back to email entry
+              ← Change email address
             </button>
           </form>
         )}
