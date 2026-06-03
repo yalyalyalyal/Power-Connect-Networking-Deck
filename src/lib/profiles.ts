@@ -3,8 +3,8 @@ import { supabase } from "@/integrations/supabase/supabase-singleton";
 // OLD IMPLEMENTATION - Keep for reverting back if needed
 import { createClient } from "@supabase/supabase-js";
 
-const PROFILES_URL = "https://tukqplsjvwrehkwbpojm.supabase.co";
-const PROFILES_KEY = "sb_publishable_lzThihKwRiwuXGUCwCqgjA__Vj0AyQI";
+const PROFILES_URL = "URL";
+const PROFILES_KEY = "KEY";
 
 export const profilesClient = createClient(PROFILES_URL, PROFILES_KEY, {
   auth: { persistSession: false, autoRefreshToken: false },
@@ -29,7 +29,7 @@ export type Profile = {
 export async function fetchProfiles(): Promise<Profile[]> { 
   // Using singleton and restricted table view
   const { data, error } = await supabase
-    .from("Restricted_Prod_Profiles")
+    .from("Public_Prod_Profiles")
     .select("*")
     .limit(500); // Profile display limit to reduce client memory load
   
