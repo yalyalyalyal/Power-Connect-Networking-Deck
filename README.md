@@ -25,3 +25,6 @@ Solution: Personally scraped and cleaned the dataset by hand, and using some scr
 3. High-Pressure Live Triage & Hotfixing
 Challenge: Minimal time and capacity for QA meant that minutes after the live production launch, aggressive corporate email firewalls (e.g., Microsoft Safe Links) began pre-scanning and instantly consuming single-use Magic Login links before attendees could physically open them.
 Solution: Executed immediate live telemetry diagnostics and shipped an emergency hotfix to production. Implemented a coordinated 6-digit numerical OTP (One-Time Password) to allow users to type fallback security tokens directly into the UI, bypassing firewall link-clipping with zero downtime.
+
+
+NOTE: This is a clone of the original repo to view history and process without accessing the actual profiles. 
