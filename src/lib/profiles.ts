@@ -29,7 +29,7 @@ export type Profile = {
 export async function fetchProfiles(): Promise<Profile[]> { 
   // Using singleton and restricted table view
   const { data, error } = await supabase
-    .from("Restricted_Prod_Profiles")
+    .from("Prod_Profiles")
     .select("*")
     .limit(500); // Profile display limit to reduce client memory load
   
