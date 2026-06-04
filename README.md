@@ -30,7 +30,7 @@ Version Control & Deployment: GitHub
 
 Challenge: The NGO couldn't spend any money on the project so only completely free tiers could be used.
 
-Solution: Lovable's free tier (24 credits used) and included cloudprovided a quick POC/Prototype before migrating to an external Supabase database and updating the project directly on GitHub.
+Solution: Lovable's free tier (24 credits used) and included cloud provided a quick POC/Prototype before migrating to an external Supabase database and updating the project directly on GitHub.
 
 
 2. Data Pipeline
