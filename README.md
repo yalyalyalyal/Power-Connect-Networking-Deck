@@ -4,6 +4,7 @@ A secure, mobile-first professional matchmaking and networking web application d
 
 Planned, designed, built, secured, tested, and shipped solo from concept to production in less than 7 days with a $0 budget, serving hundreds of real-world attendees.
 
+See the app with demo profiles here: https://etw-power-connect.lovable.app/
 
 📌 Summary & Core Value Prop
 
