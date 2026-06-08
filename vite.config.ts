@@ -1,21 +1,3 @@
-// UPDATED VERCEL SUGGESTION
-
-import { tanstackStart } from '@tanstack/react-start/plugin/vite';
-import { defineConfig } from 'vite';
-import viteReact from '@vitejs/plugin-react';
-import { nitro } from 'nitro/vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
-
-export default defineConfig({
-  plugins: [
-    tsconfigPaths(),
-    tanstackStart(),
-    nitro(),
-    viteReact(),
-  ],
-});
-
-/* ORIGINAL LOVABLE IMPORT/EXPORT FOR ROLLBACK
 // @lovable.dev/vite-tanstack-config already includes the following — do NOT add them manually
 // or the app will break with duplicate plugins:
 //   - tanstackStart, viteReact, tailwindcss, tsConfigPaths, cloudflare (build-only),
@@ -31,4 +13,3 @@ export default defineConfig({
     server: { entry: "server" },
   },
 });
-*/
