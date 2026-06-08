@@ -7,15 +7,15 @@ Planned, designed, built, secured, tested, and shipped solo from concept to prod
 <a href="https://etw-power-connect.lovable.app/" target="_blank">See the app with demo profiles here</a> 
 
 To skip auth, use the testing email address: test@test.test
-</br>
+<br />
+
 📌 Summary & Core Value Prop
 
 Traditional conference networking is a hassle - attendees often miss opportunities to connect with the most relevent people due to chance or time constraints. 
-</br>
+<br />
 
 Power Connect bridges this gap by presenting a comfortable dating-style swiping UX, accessible via Magic Link or OTP, to  discover, filter, and save profiles for later. This way, attendees can browse for potential connections during meetings or after conference hours, and save the profiles they're interested in approaching later or online. 
-</br>
-
+<br />
 
 🛠️ The Tech Stack (all free tiers)
 
@@ -28,7 +28,7 @@ Logic, refactoring, and QA: Claude, Gemini, and hand-coding
 Secure Backend: Supabase
 
 Version Control & Deployment: GitHub
-</br>
+<br />
 
 ⚡ A Few Engineering & Operational Challenges
 
@@ -52,6 +52,6 @@ Challenge: Minimal time and capacity for QA meant that minutes after the live pr
 
 Solution: Executed immediate live telemetry diagnostics and shipped an emergency hotfix to production. Implemented a coordinated 6-digit numerical OTP (One-Time Password) to allow users to type fallback security tokens directly into the UI, bypassing firewall link-clipping with zero downtime.
 
-</br>
+<br />
 
 NOTE: This is a clone of the original repo to view history and process without accessing the actual profiles. 
