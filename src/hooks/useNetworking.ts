@@ -327,9 +327,9 @@ export function useResetRejections() {
     onMutate: async () => {
       await qc.cancelQueries({ queryKey });
       const previousRejections = qc.getQueryData(queryKey);
-      
+
       qc.setQueryData(queryKey, []);
-      
+
       return { previousRejections };
     },
     onError: (err, variables, context) => {

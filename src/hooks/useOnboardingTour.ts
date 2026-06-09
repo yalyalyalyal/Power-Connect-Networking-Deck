@@ -95,8 +95,7 @@ export function useOnboardingTour({
             element: '[data-tour="filters"]',
             popover: {
               title: "Filter the deck",
-              description:
-                "Focus profiles by tags to swipe efficiently.",
+              description: "Focus profiles by tags to swipe efficiently.",
               side: "bottom",
               align: "end",
             },

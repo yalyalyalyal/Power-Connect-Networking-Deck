@@ -5,12 +5,7 @@ import { AppShell } from "@/components/AppShell";
 import { TopBar } from "@/components/TopBar";
 import { ProfileDetail } from "@/components/ProfileDetail";
 import { FilterDrawer, emptyFilters, type Filters } from "@/components/FilterDrawer";
-import {
-  applyFilters,
-  useBookmarks,
-  useProfiles,
-  useToggleBookmark,
-} from "@/hooks/useNetworking";
+import { applyFilters, useBookmarks, useProfiles, useToggleBookmark } from "@/hooks/useNetworking";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import type { Profile } from "@/lib/profiles";
@@ -39,14 +34,15 @@ function Saved() {
     const onlySaved = profiles.filter((p) => savedIds.has(p.id));
     return applyFilters(onlySaved, search, [], filters.tags, filters.allStars);
   }, [profiles, savedIds, search, filters]);
-    /* Replaced 'filters.companyTypes' with an empty array '[]' to remove companyType filter while
+  /* Replaced 'filters.companyTypes' with an empty array '[]' to remove companyType filter while
     satisfying the hook's method arguments.*/
   const availableTags = useMemo(() => {
     const set = new Set<string>();
-    for (const p of profiles) if (savedIds.has(p.id)) for (const t of p.tags ?? []) if (t) set.add(t);
+    for (const p of profiles)
+      if (savedIds.has(p.id)) for (const t of p.tags ?? []) if (t) set.add(t);
     return [...set].sort();
   }, [profiles, savedIds]);
-  
+
   /* Removed 'filters.companyTypes.length +' from the count */
   const activeFilterCount = filters.tags.length + (filters.allStars ? 1 : 0);
 
@@ -143,9 +139,7 @@ function Saved() {
       />
 
       <Dialog open={!!expanded} onOpenChange={(o) => !o && setExpanded(null)}>
-        <DialogContent
-          className="max-h-[90dvh] w-[95vw] max-w-md gap-0 overflow-hidden rounded-3xl border-border/60 bg-card p-0 [&>button.absolute]:top-4 [&>button.absolute]:right-4 [&>button.absolute]:z-30 [&>button.absolute]:rounded-full [&>button.absolute]:bg-background/80 [&>button.absolute]:p-1.5 [&>button.absolute]:backdrop-blur"
-        >
+        <DialogContent className="max-h-[90dvh] w-[95vw] max-w-md gap-0 overflow-hidden rounded-3xl border-border/60 bg-card p-0 [&>button.absolute]:top-4 [&>button.absolute]:right-4 [&>button.absolute]:z-30 [&>button.absolute]:rounded-full [&>button.absolute]:bg-background/80 [&>button.absolute]:p-1.5 [&>button.absolute]:backdrop-blur">
           {expanded && (
             <div className="flex max-h-[90dvh] flex-col">
               <div className="flex-1 overflow-y-auto">
@@ -168,11 +162,7 @@ function Saved() {
                     className="h-12 gap-2 text-base font-bold text-white"
                     style={{ background: "var(--linkedin)" }}
                   >
-                    <a
-                      href={expanded.linkedin_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <a href={expanded.linkedin_url} target="_blank" rel="noopener noreferrer">
                       Connect with <Linkedin className="h-5 w-5" fill="white" />
                     </a>
                   </Button>

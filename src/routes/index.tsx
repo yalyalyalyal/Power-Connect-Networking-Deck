@@ -127,12 +127,11 @@ function Discover() {
         </div>
 
         {top && (
-          <div className="relative z-10 mt-4 flex shrink-0 items-center justify-center gap-5" data-tour="actions">
-            <ActionButton
-              label="Pass"
-              onClick={() => handleSwipe("left", top.id)}
-              variant="reject"
-            >
+          <div
+            className="relative z-10 mt-4 flex shrink-0 items-center justify-center gap-5"
+            data-tour="actions"
+          >
+            <ActionButton label="Pass" onClick={() => handleSwipe("left", top.id)} variant="reject">
               <X className="w-[24px] h-[24px]" strokeWidth={3} />
             </ActionButton>
             <ActionButton
@@ -143,11 +142,7 @@ function Discover() {
             >
               <Undo2 className="h-5 w-5" />
             </ActionButton>
-            <ActionButton
-              label="Save"
-              onClick={() => handleSwipe("right", top.id)}
-              variant="save"
-            >
+            <ActionButton label="Save" onClick={() => handleSwipe("right", top.id)} variant="save">
               <Bookmark className="h-6 w-6 text-slate-50" fill="currentColor" />
             </ActionButton>
           </div>
@@ -190,7 +185,7 @@ function ActionButton({
       onClick={onClick}
       disabled={disabled}
       aria-label={label}
-      className={`rounded-full transition-transform disabled:hover:scale-100 ${styles[variant]} ${variant === 'reject' ? 'bg-[#c7c7c7]/0 opacity-100' : 'disabled:opacity-40'}`}
+      className={`rounded-full transition-transform disabled:hover:scale-100 ${styles[variant]} ${variant === "reject" ? "bg-[#c7c7c7]/0 opacity-100" : "disabled:opacity-40"}`}
     >
       {children}
     </Button>

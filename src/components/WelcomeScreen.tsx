@@ -72,7 +72,11 @@ function EtwLogoSvg({ className }: { className?: string }) {
           fill="currentColor"
         />
         <path d="M39.8721 5.4668H0L39.8721 97.3935V5.4668Z" fill="currentColor" fillOpacity="0.7" />
-        <path d="M40.1332 58.6289H0L40.1332 151.158V58.6289Z" fill="currentColor" fillOpacity="0.5" />
+        <path
+          d="M40.1332 58.6289H0L40.1332 151.158V58.6289Z"
+          fill="currentColor"
+          fillOpacity="0.5"
+        />
       </g>
       <defs>
         <clipPath id="etw-clip">
@@ -98,23 +102,32 @@ function NetworkDiagram() {
   const hubR = 38; // central hub radius
 
   // UPDATE: Replaced plain text labels with live Unsplash links and mapped to match your mockup layout
-  const satellites: { angle: number; imageUrl?: string; icon?: "person" | "building" | "leaf" }[] = [
-    { angle: -90, imageUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80" }, // Top: Female 1
-    { angle: -30, icon: "building" },                                                                                           // Top Right: Building
-    { angle: 30,  imageUrl: "https://images.unsplash.com/photo-1531123897727-8f129e1bf98c?auto=format&fit=crop&w=150&q=80" }, // Bottom Right: Female 2
-    { angle: 90,  icon: "leaf" },                                                                                               // Bottom: Leaf
-    { angle: 150, imageUrl: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=150&q=80" }, // Bottom Left: Male
-    { angle: 210, icon: "person" },                                                                                             // Top Left: People Networking
-  ];
+  const satellites: { angle: number; imageUrl?: string; icon?: "person" | "building" | "leaf" }[] =
+    [
+      {
+        angle: -90,
+        imageUrl:
+          "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
+      }, // Top: Female 1
+      { angle: -30, icon: "building" }, // Top Right: Building
+      {
+        angle: 30,
+        imageUrl:
+          "https://images.unsplash.com/photo-1531123897727-8f129e1bf98c?auto=format&fit=crop&w=150&q=80",
+      }, // Bottom Right: Female 2
+      { angle: 90, icon: "leaf" }, // Bottom: Leaf
+      {
+        angle: 150,
+        imageUrl:
+          "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=150&q=80",
+      }, // Bottom Left: Male
+      { angle: 210, icon: "person" }, // Top Left: People Networking
+    ];
 
   const toRad = (deg: number) => (deg * Math.PI) / 180;
 
   return (
-    <svg
-      viewBox="0 0 280 280"
-      className="w-full max-w-[280px]"
-      aria-hidden="true"
-    >
+    <svg viewBox="0 0 280 280" className="w-full max-w-[280px]" aria-hidden="true">
       <defs>
         {/* Glow filter using the app's --glow colour approximation */}
         <filter id="hub-glow" x="-50%" y="-50%" width="200%" height="200%">
@@ -193,7 +206,7 @@ function NetworkDiagram() {
         const rad = toRad(angle);
         const sx = cx + R * Math.cos(rad);
         const sy = cy + R * Math.sin(rad);
-        
+
         return (
           <g key={i}>
             <circle
@@ -222,21 +235,43 @@ function NetworkDiagram() {
             )}
 
             {icon === "person" && (
-              <g fill="none" stroke="var(--muted-foreground)" strokeWidth="1.5" transform={`translate(${sx}, ${sy})`}>
-                 <path d="M-6,5 C-6,2 -3,1 0,1 C3,1 6,2 6,5 M1,-3 C2,-3 3,-4 3,-5.5 C3,-7 2,-8 1,-8 C0,-8 -1,-7 -1,-5.5 C-1,-4 0,-3 1,-3 Z M4,4 C5.5,3.5 7,2.5 7,0.5 C7,-0.5 5,-1 4,-1 M4,-4 C5,-4 5.5,-4.5 5.5,-5.5 C5.5,-6.5 5,-7 4,-7" strokeLinecap="round" />
+              <g
+                fill="none"
+                stroke="var(--muted-foreground)"
+                strokeWidth="1.5"
+                transform={`translate(${sx}, ${sy})`}
+              >
+                <path
+                  d="M-6,5 C-6,2 -3,1 0,1 C3,1 6,2 6,5 M1,-3 C2,-3 3,-4 3,-5.5 C3,-7 2,-8 1,-8 C0,-8 -1,-7 -1,-5.5 C-1,-4 0,-3 1,-3 Z M4,4 C5.5,3.5 7,2.5 7,0.5 C7,-0.5 5,-1 4,-1 M4,-4 C5,-4 5.5,-4.5 5.5,-5.5 C5.5,-6.5 5,-7 4,-7"
+                  strokeLinecap="round"
+                />
               </g>
             )}
-            
+
             {icon === "building" && (
-              <g fill="none" stroke="var(--muted-foreground)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" transform={`translate(${sx}, ${sy})`}>
-                 <path d="M-7,8 L-7,-8 L3,-8 L3,-3 L8,-3 L8,8 Z M-3,4 L-1,4 L-1,1 L-3,1 Z M-3,-1 L-1,-1 L-1,-4 L-3,-4 Z M3,4 L5,4 L5,1 L3,1 Z" />
+              <g
+                fill="none"
+                stroke="var(--muted-foreground)"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                transform={`translate(${sx}, ${sy})`}
+              >
+                <path d="M-7,8 L-7,-8 L3,-8 L3,-3 L8,-3 L8,8 Z M-3,4 L-1,4 L-1,1 L-3,1 Z M-3,-1 L-1,-1 L-1,-4 L-3,-4 Z M3,4 L5,4 L5,1 L3,1 Z" />
               </g>
             )}
 
             {/* UPDATE: Added missing leaf icon SVG construct */}
             {icon === "leaf" && (
-              <g fill="none" stroke="var(--muted-foreground)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" transform={`translate(${sx}, ${sy})`}>
-                 <path d="M5.5,-5.5 C1.5,-7 -3.5,-5.5 -5.5,-2 C-7.5,1.5 -5.5,6 -5.5,6 C-5.5,6 -1,7 2.5,4.5 C6,2 7,-1.5 5.5,-5.5 Z M-5.5,6 L-1.5,2" />
+              <g
+                fill="none"
+                stroke="var(--muted-foreground)"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                transform={`translate(${sx}, ${sy})`}
+              >
+                <path d="M5.5,-5.5 C1.5,-7 -3.5,-5.5 -5.5,-2 C-7.5,1.5 -5.5,6 -5.5,6 C-5.5,6 -1,7 2.5,4.5 C6,2 7,-1.5 5.5,-5.5 Z M-5.5,6 L-1.5,2" />
               </g>
             )}
           </g>

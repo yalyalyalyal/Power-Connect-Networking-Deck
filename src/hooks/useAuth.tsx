@@ -61,7 +61,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
     return { error: error?.message ?? null };
   };
-  
+
   /* Added new function to explicitly verify the 6-digit numerical OTP token submitted by the user */
   const verifyOtpCode = async (email: string, token: string) => {
     const { data, error } = await supabase.auth.verifyOtp({
@@ -69,7 +69,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       token,
       type: "email", // Tells Supabase this is a standard email token check
     });
-    
+
     if (error) return { error: error.message };
     if (data.session) setSession(data.session);
     return { error: null };

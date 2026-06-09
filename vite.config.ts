@@ -3,19 +3,13 @@
 //   @vitejs/plugin-react, @tanstack/router-plugin, React/TanStack deduplication,
 //   SSR shell plumbing, VITE_* env injection, and the @ path alias.
 // Only add project-specific extras (Tailwind, tsconfig-paths) inside vite.plugins.
-import { tanstackStart } from '@tanstack/react-start/plugin/vite';
-import { defineConfig } from 'vite';
-import viteReact from '@vitejs/plugin-react';
-import { nitro } from 'nitro/vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
-import tailwindcss from '@tailwindcss/vite';
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import { defineConfig } from "vite";
+import viteReact from "@vitejs/plugin-react";
+import { nitro } from "nitro/vite";
+import tsconfigPaths from "vite-tsconfig-paths";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  plugins: [
-    tsconfigPaths(),
-    tailwindcss(),
-    tanstackStart(),
-    nitro(),
-    viteReact(),
-  ],
+  plugins: [tsconfigPaths(), tailwindcss(), tanstackStart(), nitro(), viteReact()],
 });
