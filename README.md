@@ -1,5 +1,5 @@
 🚀 Power Connect
- 
+
 A secure, mobile-first professional matchmaking and networking web application deployed live at an NGO conference including global enterprise attendees.
 
 Planned, designed, built, secured, tested, and shipped solo from concept to production in less than 7 days with a $0 budget, serving hundreds of real-world attendees.
