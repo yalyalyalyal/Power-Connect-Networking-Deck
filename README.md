@@ -4,7 +4,7 @@ A secure, mobile-first professional matchmaking and networking web application d
 
 Planned, designed, built, secured, tested, and shipped solo from concept to production in less than 7 days with a $0 budget, serving hundreds of real-world attendees.
 
-<a href="https://etw-power-connect.lovable.app/" target="_blank">See the app with demo profiles here</a> 
+<a href="https://power-connect-demo.vercel.app/" target="_blank">See the app with demo profiles here</a> 
 
 To skip auth, use the testing email address: test@test.test
 <br />
@@ -54,4 +54,4 @@ Solution: Executed immediate live telemetry diagnostics and shipped an emergency
 
 <br />
 
-NOTE: This is a clone of the original repo to view history and process without accessing the actual profiles. 
+NOTE: This is a clone of the original repo to view history and process without accessing the actual profiles. The original used Supabase's built-in email authentication with edited styling but the free tier no longer supports template editing since 3.6.26, <a href="https://supabase.com/changelog/46599-changes-to-email-template-customisation-on-free-tier">as outlined here.</a>
