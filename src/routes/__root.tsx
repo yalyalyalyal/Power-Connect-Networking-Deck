@@ -7,6 +7,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { Analytics } from "@vercel/analytics/react";
 
 import appCss from "../styles.css?url";
 import { AuthProvider } from "@/hooks/useAuth";
@@ -18,7 +19,10 @@ function NotFoundComponent() {
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-extrabold text-glow text-primary">404</h1>
         <h2 className="mt-4 text-xl font-semibold">Page not found</h2>
-        <Link to="/" className="mt-6 inline-block rounded-full gradient-primary px-5 py-2 text-sm font-bold text-primary-foreground glow">
+        <Link
+          to="/"
+          className="mt-6 inline-block rounded-full gradient-primary px-5 py-2 text-sm font-bold text-primary-foreground glow"
+        >
           Back to deck
         </Link>
       </div>
@@ -35,7 +39,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <h1 className="text-xl font-semibold">Something went wrong</h1>
         <p className="mt-2 text-sm text-muted-foreground">{error.message}</p>
         <button
-          onClick={() => { router.invalidate(); reset(); }}
+          onClick={() => {
+            router.invalidate();
+            reset();
+          }}
           className="mt-6 rounded-full gradient-primary px-5 py-2 text-sm font-bold text-primary-foreground glow"
         >
           Try again
@@ -51,14 +58,34 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { title: "Power Connect | Energy Tech Week | Ignite The Spark" },
-      { name: "description", content: "The networking deck for Energy Tech Week 2026's Power Connect event. Hosted by Ignite the Spark. Built by Eyal Ephrati." },
+      {
+        name: "description",
+        content:
+          "The networking deck for Energy Tech Week 2026's Power Connect event. Hosted by Ignite the Spark. Built by Eyal Ephrati.",
+      },
       { name: "theme-color", content: "#141040" },
       { property: "og:title", content: "Power Connect | Energy Tech Week | Ignite The Spark" },
       { name: "twitter:title", content: "Power Connect | Energy Tech Week | Ignite The Spark" },
-      { property: "og:description", content: "The networking deck for Energy Tech Week 2026's Power Connect event. Hosted by Ignite the Spark. Built by Eyal Ephrati." },
-      { name: "twitter:description", content: "The networking deck for Energy Tech Week 2026's Power Connect event. Hosted by Ignite the Spark. Built by Eyal Ephrati." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/oLYFumuBnmXwogurXw4w91hXPpP2/social-images/social-1779977341600-Power_Connect_Preview.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/oLYFumuBnmXwogurXw4w91hXPpP2/social-images/social-1779977341600-Power_Connect_Preview.webp" },
+      {
+        property: "og:description",
+        content:
+          "The networking deck for Energy Tech Week 2026's Power Connect event. Hosted by Ignite the Spark. Built by Eyal Ephrati.",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "The networking deck for Energy Tech Week 2026's Power Connect event. Hosted by Ignite the Spark. Built by Eyal Ephrati.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/oLYFumuBnmXwogurXw4w91hXPpP2/social-images/social-1779977341600-Power_Connect_Preview.webp",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/oLYFumuBnmXwogurXw4w91hXPpP2/social-images/social-1779977341600-Power_Connect_Preview.webp",
+      },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:type", content: "website" },
     ],
@@ -99,6 +126,7 @@ function RootComponent() {
       <AuthProvider>
         <Outlet />
         <Toaster />
+        <Analytics />
       </AuthProvider>
     </QueryClientProvider>
   );

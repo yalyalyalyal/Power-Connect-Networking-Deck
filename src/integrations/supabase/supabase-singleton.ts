@@ -9,7 +9,7 @@ declare global {
 
 let supabaseInstance: typeof generatedSupabase;
 
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   // If the global instance doesn't exist on the browser window yet, assign it
   if (!window.__supabaseInstance) {
     window.__supabaseInstance = generatedSupabase;

@@ -4,22 +4,22 @@ A secure, mobile-first professional matchmaking and networking web application d
 
 Planned, designed, built, secured, tested, and shipped solo from concept to production in less than 7 days with a $0 budget, serving hundreds of real-world attendees.
 
-<a href="https://etw-power-connect.lovable.app/" target="_blank">See the app with demo profiles here</a> 
+<a href="https://etw-power-connect.lovable.app/" target="_blank">See the app with demo profiles here</a>
 
 To skip auth, use the testing email address: test@test.test
 <br />
 
 📌 Summary & Core Value Prop
 
-Traditional conference networking is a hassle - attendees often miss opportunities to connect with the most relevent people due to chance or time constraints. 
+Traditional conference networking is a hassle - attendees often miss opportunities to connect with the most relevent people due to chance or time constraints.
 <br />
 
-Power Connect bridges this gap by presenting a comfortable dating-style swiping UX, accessible via Magic Link or OTP, to  discover, filter, and save profiles for later. This way, attendees can browse for potential connections during meetings or after conference hours, and save the profiles they're interested in approaching later or online. 
+Power Connect bridges this gap by presenting a comfortable dating-style swiping UX, accessible via Magic Link or OTP, to discover, filter, and save profiles for later. This way, attendees can browse for potential connections during meetings or after conference hours, and save the profiles they're interested in approaching later or online.
 <br />
 
 🛠️ The Tech Stack (all free tiers)
 
-Design mockups and assets: Figma 
+Design mockups and assets: Figma
 
 Prototype and pre-alpha frontend: Lovable
 
@@ -38,13 +38,11 @@ Challenge: The NGO couldn't spend any money on the project so only completely fr
 
 Solution: Lovable's free tier (24 credits used) and included cloud provided a quick POC/Prototype before migrating to an external Supabase database and updating the project directly on GitHub.
 
-
 2. Data Pipeline
 
 Challenge: The NGO lacked a structured database of attendees, possessing only raw, unformatted registration logs. Linkedin scraping of profiles via api, especially profile photos, results in a swift ban.
 
 Solution: Personally scraped and cleaned the dataset by hand, and using some scripts and GSheets formulas. Used the NGO's Google Drive to host profile photos (uid as key) with the format: https://lh3.googleusercontent.com/d/[file_id]=s500.
-
 
 3. High-Pressure Live Triage & Hotfixing
 
@@ -54,4 +52,4 @@ Solution: Executed immediate live telemetry diagnostics and shipped an emergency
 
 <br />
 
-NOTE: This is a clone of the original repo to view history and process without accessing the actual profiles. 
+NOTE: This is a clone of the original repo to view history and process without accessing the actual profiles.

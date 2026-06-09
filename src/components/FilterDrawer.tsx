@@ -1,4 +1,10 @@
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerFooter } from "@/components/ui/drawer";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerFooter,
+} from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Star } from "lucide-react";
@@ -36,7 +42,15 @@ export function FilterDrawer({
     });
   };
 
-  const Chip = ({ active, label, onClick }: { active: boolean; label: string; onClick: () => void }) => (
+  const Chip = ({
+    active,
+    label,
+    onClick,
+  }: {
+    active: boolean;
+    label: string;
+    onClick: () => void;
+  }) => (
     <button
       type="button"
       onClick={onClick}
@@ -113,7 +127,10 @@ export function FilterDrawer({
             <Button variant="outline" className="flex-1" onClick={() => onChange(emptyFilters)}>
               Clear
             </Button>
-            <Button className="flex-1 gradient-primary border-0" onClick={() => onOpenChange(false)}>
+            <Button
+              className="flex-1 gradient-primary border-0"
+              onClick={() => onOpenChange(false)}
+            >
               Apply
             </Button>
           </DrawerFooter>

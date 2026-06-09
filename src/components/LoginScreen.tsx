@@ -3,7 +3,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { Logo } from "./Logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Mail, Search, KeyRound} from "lucide-react";
+import { Mail, Search, KeyRound } from "lucide-react";
 
 /* Hidden Welcome Screen trigger for testing
 // Initial Welcome Screen (WelcomeScreen.tsx) to appear before Login screen
@@ -16,7 +16,7 @@ export function LoginScreen() {
     sessionStorage.getItem("pc-welcomed") === "1"
   );
   */
-  
+
   const { signInWithMagicLink, verifyOtpCode } = useAuth(); // Destructured verifyOtpCode from hook
   const [email, setEmail] = useState("");
   const [otpCode, setOtpCode] = useState(""); // Added state tracker for the 6-digit token text input
@@ -25,7 +25,7 @@ export function LoginScreen() {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-   /* Hidden Welcome Screen trigger for testing
+  /* Hidden Welcome Screen trigger for testing
   if (!welcomed) {
     return (
       <WelcomeScreen
@@ -50,21 +50,21 @@ export function LoginScreen() {
       return;
     } else setSent(true);
   };
-  
-// Added a separate submission handler for checking the typed 6-digit authorization code
+
+  // Added a separate submission handler for checking the typed 6-digit authorization code
   const onVerifyOtp = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
     setVerifying(true);
-    
+
     const { error } = await verifyOtpCode(email.trim().toLowerCase(), otpCode.trim());
     setVerifying(false);
-    
+
     if (error) {
       setError("This code is incorrect or expired. Please try again.");
     }
   };
-  
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-6 py-10">
       <div className="w-full max-w-sm space-y-8">
@@ -73,12 +73,12 @@ export function LoginScreen() {
           <div>
             <h1 className="font-bold tracking-tight text-glow text-[2rem]">POWER CONNECT</h1>
             <p className="mt-2 text-sm text-muted-foreground">
-              Demo Version of the Energy Tech networking deck for Power Connect 2026. 
+              Demo Version of the Energy Tech networking deck for Power Connect 2026.
             </p>
           </div>
         </div>
-        
-{/* CHANGED: Switched from displaying simple success text to conditionally rendering the Code Verification Form */}
+
+        {/* CHANGED: Switched from displaying simple success text to conditionally rendering the Code Verification Form */}
         {!sent ? (
           <form onSubmit={onSubmit} className="space-y-4">
             <div className="space-y-2">
@@ -138,7 +138,7 @@ export function LoginScreen() {
             >
               {verifying ? "Verifying token..." : "Verify & Sign In"}
             </Button>
-            
+
             {/* Allows user to correct an accidental typo in their email address */}
             <button
               type="button"
@@ -153,10 +153,13 @@ export function LoginScreen() {
             </button>
           </form>
         )}
-        
+
         <p className="px-1 pt-1 text-center text-[11px] text-muted-foreground">
           Ignite The Spark 2026 <br />
-          Built by <a href="https://www.linkedin.com/in/yalyal/" target="_blank">Eyal Ephrati</a>
+          Built by{" "}
+          <a href="https://www.linkedin.com/in/yalyal/" target="_blank">
+            Eyal Ephrati
+          </a>
         </p>
       </div>
     </div>

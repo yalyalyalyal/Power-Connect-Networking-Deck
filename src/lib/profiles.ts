@@ -1,4 +1,4 @@
-import { supabase } from "@/integrations/supabase/supabase-singleton"; 
+import { supabase } from "@/integrations/supabase/supabase-singleton";
 /*
 // OLD IMPLEMENTATION - Keep for reverting back if needed
 import { createClient } from "@supabase/supabase-js";
@@ -26,13 +26,10 @@ export type Profile = {
   all_star: boolean | null;
 };
 
-export async function fetchProfiles(): Promise<Profile[]> { 
+export async function fetchProfiles(): Promise<Profile[]> {
   // Using singleton and restricted table view
-  const { data, error } = await supabase
-    .from("Public_Prod_Profiles")
-    .select("*")
-    .limit(500); // Profile display limit to reduce client memory load
-  
+  const { data, error } = await supabase.from("Public_Prod_Profiles").select("*").limit(500); // Profile display limit to reduce client memory load
+
   /*
   // Testing Table and non-singleton
   const { data, error } = await profilesClient
